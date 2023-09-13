@@ -22,35 +22,53 @@ for (let i = 0; i < buffer.length; i++) {
   channelData[i] = Math.random() * 2 - 1;
 }
 
+//create VOLUME
 /* connect this audio node to another audio node, including the destination node, which represents the speakers on user's computer*/
 //we need a gain node to control the volume
 const primaryGainControl = audioContext.createGain();
 //0.05 decreases the volume because it's less than 1
 primaryGainControl.gain.setValueAtTime(0.05, 0);
 
+//create FILTERS
+
+//snare drum
 primaryGainControl.connect(audioContext.destination);
 const snareFilter = audioContext.createBiquadFilter();
 snareFilter.type = "highpass";
 //frequency that cuts off the noise
 snareFilter.frequency.value = 1500;
-snareFilter.connect(primaryGainControl);
 
-const createButton = (text, source) => {
+//kick drum
+const kickDrum = document.createElement("button");
+root.appendChild(kickDrum);
+kickDrum.className = "buttonClass";
+kickDrum.innerText = "Kick Drum";
+kickDrum.addEventListener("click", () => {
+  const kickOscillator = audioContext.createOscillator();
+  //261.6 is middle C
+  kickOscillator.frequency.setValueAtTime(261.6, 0);
+  kickOscillator.connect(primaryGainControl);
+  kickOscillator.start();
+  kickOscillator.stop(audioContext.currentTime + 1);
+});
+
+//create BUTTONS
+const createButton = (text, filter) => {
   const button = document.createElement("button");
   root.appendChild(button);
   const buttonText = document.createTextNode(text);
   button.appendChild(buttonText);
   button.className = "buttonClass";
-  button.addEventListener("click", (filter) => {
+  button.addEventListener("click", () => {
     /* we need to create a buffer source, which is an audio node that takes our buffer and handles playing it for us*/
-    const whiteNoiseSource = audioContext.createBufferSource();
-    whiteNoiseSource.buffer = buffer;
-    whiteNoiseSource.connect(source);
-    whiteNoiseSource.start();
+    const source = audioContext.createBufferSource();
+    source.buffer = buffer;
+    source.connect(filter);
+    filter.connect(primaryGainControl);
+    source.start();
   });
   return button;
 };
 
 const whiteNoiseButton = createButton("White Noise", primaryGainControl);
 const snareButton = createButton("Snare Button", snareFilter);
-
