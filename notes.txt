@@ -1,0 +1,18 @@
+web audio is based on modular routing
+
+we use code to connect the nodes
+
+we need to use audio buffer so javscript can understand.
+
+An audio buffer represents a certain duration of sound. It stores the amplitude value of the signal
+
+when working with audio on a computer, we use discreet signals, which splits a 
+continuous signal into a sequence of samples
+
+an audio buffer is initialized using a specific sample rate, which is the number of
+samples per second
+
+range of human hearing is 20-20k hertz. To be able to hear it, we need to double the source frequency in order to get a sample rate that matches that source frequency 
+
+create a filter to change the audio signal
+high pass filter cuts off all noise that exists below a certain frequency
