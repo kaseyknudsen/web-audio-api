@@ -45,9 +45,23 @@ kickDrum.className = "buttonClass";
 kickDrum.innerText = "Kick Drum";
 kickDrum.addEventListener("click", () => {
   const kickOscillator = audioContext.createOscillator();
-  //261.6 is middle C
-  kickOscillator.frequency.setValueAtTime(261.6, 0);
-  kickOscillator.connect(primaryGainControl);
+  //261.6 hz is middle C
+  //   kickOscillator.frequency.setValueAtTime(261.6, 0);
+  kickOscillator.frequency.setValueAtTime(150, audioContext.currentTime);
+  //change the frequency exponentially over time from 150 down to .001
+  kickOscillator.frequency.exponentialRampToValueAtTime(
+    0.001,
+    audioContext.currentTime + 0.5
+  );
+  //we need to fix the pop at the end of the 1 second by giving the oscillator it's own gain node that fades out the volume with the pitch
+  const kickGain = audioContext.createGain();
+  kickGain.gain.setValueAtTime(1, audioContext.currentTime);
+  kickGain.gain.exponentialRampToValueAtTime(
+    0.001,
+    audioContext.currentTime + 0.5
+  );
+  kickOscillator.connect(kickGain);
+  kickGain.connect(primaryGainControl);
   kickOscillator.start();
   kickOscillator.stop(audioContext.currentTime + 1);
 });
@@ -72,3 +86,38 @@ const createButton = (text, filter) => {
 
 const whiteNoiseButton = createButton("White Noise", primaryGainControl);
 const snareButton = createButton("Snare Button", snareFilter);
+
+const notes = [
+  { name: "C", frequency: 261.63 },
+  { name: "C#", frequency: 277.18 },
+  { name: "D", frequency: 293.66 },
+  { name: "D#", frequency: 311.13 },
+  { name: "E", frequency: 329.63 },
+  { name: "F", frequency: 349.23 },
+  { name: "F#", frequency: 369.99 },
+  { name: "G", frequency: 392.0 },
+  { name: "G#", frequency: 415.3 },
+  { name: "A", frequency: 440.0 },
+  { name: "A#", frequency: 466.16 },
+  { name: "B", frequency: 493.88 },
+  { name: "C", frequency: 523.25 },
+];
+
+const createNotes = notes.map((note, key) => {
+  const button = document.createElement("button");
+  root.appendChild(button);
+  button.className = "chromaticScaleClass";
+  button.innerText = note.name;
+  button.addEventListener("click", () => {
+    const noteOscillator = audioContext.createOscillator();
+    noteOscillator.type = "sign";
+    noteOscillator.frequency.setValueAtTime(
+      note.frequency,
+      audioContext.currentTime
+    );
+    noteOscillator.connect(primaryGainControl);
+    noteOscillator.start();
+    noteOscillator.stop(audioContext.currentTime + 0.5);
+  });
+  return button;
+});

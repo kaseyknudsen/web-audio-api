@@ -16,3 +16,5 @@ range of human hearing is 20-20k hertz. To be able to hear it, we need to double
 
 create a filter to change the audio signal
 high pass filter cuts off all noise that exists below a certain frequency
+
+lower pitch means lower frequency
