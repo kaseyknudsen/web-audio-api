@@ -87,6 +87,7 @@ const createButton = (text, filter) => {
 const whiteNoiseButton = createButton("White Noise", primaryGainControl);
 const snareButton = createButton("Snare Button", snareFilter);
 
+//chromatic scale
 const notes = [
   { name: "C", frequency: 261.63 },
   { name: "C#", frequency: 277.18 },
@@ -110,14 +111,41 @@ const createNotes = notes.map((note, key) => {
   button.innerText = note.name;
   button.addEventListener("click", () => {
     const noteOscillator = audioContext.createOscillator();
-    noteOscillator.type = "sign";
+    noteOscillator.type = "square";
     noteOscillator.frequency.setValueAtTime(
       note.frequency,
       audioContext.currentTime
     );
     noteOscillator.connect(primaryGainControl);
+
+    //an envelope defines how sound changes over time
+    //ADSR: attack time, decay time, sustain level, release time
+    const attackTime = 0.2;
+    const decayTime = 0.3;
+    const sustainLevel = 0.7;
+    const releaseTime = 0.2;
+
+    const now = audioContext.currentTime;
+    const noteGain = audioContext.createGain();
+    noteGain.gain.setValueAtTime(0, now);
+    noteGain.gain.linearRampToValueAtTime(1, now + attackTime); //attack
+    noteGain.gain.linearRampToValueAtTime(
+      sustainLevel,
+      now + attackTime + decayTime
+    ); //decay to sustain level
+    noteGain.gain.setValueAtTime(sustainLevel, now + attackTime, +decayTime);
+    noteGain.gain.linearRampToValueAtTime(
+      0,
+      now + attackTime + decayTime + sustainLevel + releaseTime
+    );
+
+    noteOscillator.connect(noteGain);
+    noteGain.connect(primaryGainControl);
     noteOscillator.start();
-    noteOscillator.stop(audioContext.currentTime + 0.5);
+    noteOscillator.stop(
+      now + attackTime + decayTime + sustainLevel + releaseTime
+    );
   });
+
   return button;
 });
