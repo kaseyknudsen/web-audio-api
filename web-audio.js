@@ -1,10 +1,12 @@
 const root = document.querySelector("#root");
-
+// const canvas = document.getElementById("myCanvas");
+// const ctx = canvas.getContext("2d")
+//always start with audio context object
 const audioContext = new AudioContext();
 console.log(audioContext.sampleRate); //44,100 //double the range of human hearing
 const sampleRate = audioContext.sampleRate;
 //create buffer takes 3 arguments
-/* 1. num of channels...1 is mono, 2 is stereo, 5 is surround sound
+/* 1. num of channels...1 is mono, 2 is stereo, 6 is surround sound
 2. number of samples in the buffer...multiply sample rate by num of seconds in sample
 3. sample rate*/
 //this gives us a mono buffer that gives us 1 second of audio data
@@ -149,3 +151,6 @@ const createNotes = notes.map((note, key) => {
 
   return button;
 });
+
+// ctx.fillStyle = "#FF0000";
+// ctx.fillRect(0, 0, 150, 75);
