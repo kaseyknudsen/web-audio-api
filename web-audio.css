@@ -20,6 +20,11 @@
     background-color: lightcoral;
     padding: 10px;
 }
+.buttonClass:nth-child(4) {
+    margin-bottom: 20px;
+    background-color: grey;
+    padding: 10px;
+}
 .chromaticScaleClass {
     margin-bottom: 5px;
     width: 100px;

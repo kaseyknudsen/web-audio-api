@@ -71,6 +71,7 @@ kickDrum.addEventListener("click", () => {
 //create BUTTONS
 const createButton = (text, filter) => {
   const button = document.createElement("button");
+
   root.appendChild(button);
   const buttonText = document.createTextNode(text);
   button.appendChild(buttonText);
@@ -88,6 +89,33 @@ const createButton = (text, filter) => {
 
 const whiteNoiseButton = createButton("White Noise", primaryGainControl);
 const snareButton = createButton("Snare Button", snareFilter);
+
+//new Snare Drum
+const newSnareFilter = audioContext.createBiquadFilter();
+newSnareFilter.type = "highpass";
+newSnareFilter.frequency.value = 1500;
+newSnareFilter.connect(primaryGainControl);
+const newSnareButton = document.createElement("button");
+
+newSnareButton.className = "buttonClass";
+newSnareButton.innerText = "New Snare Button"
+
+newSnareButton.addEventListener("click", () => {
+  const whiteNoiseSource = audioContext.createBufferSource();
+  whiteNoiseSource.buffer = buffer;
+  const whiteNoiseGain = audioContext.createGain();
+  whiteNoiseGain.gain.setValueAtTime(1, audioContext.currentTime);
+  whiteNoiseGain.gain.exponentialRampToValueAtTime(
+    0.01,
+    audioContext.currentTime + 0.2
+  );
+  whiteNoiseSource.connect(whiteNoiseGain);
+  whiteNoiseGain.connect(newSnareFilter);
+  whiteNoiseSource.start();
+  whiteNoiseSource.stop(audioContext.currentTime + 0.2);
+});
+root.appendChild(newSnareButton);
+
 
 //chromatic scale
 const notes = [
@@ -113,7 +141,8 @@ const createNotes = notes.map((note, key) => {
   button.innerText = note.name;
   button.addEventListener("click", () => {
     const noteOscillator = audioContext.createOscillator();
-    noteOscillator.type = "square";
+    //sine is the waveform
+    noteOscillator.type = "sine";
     noteOscillator.frequency.setValueAtTime(
       note.frequency,
       audioContext.currentTime
@@ -154,3 +183,4 @@ const createNotes = notes.map((note, key) => {
 
 // ctx.fillStyle = "#FF0000";
 // ctx.fillRect(0, 0, 150, 75);
+
