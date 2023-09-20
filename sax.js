@@ -3,6 +3,7 @@ const sax = document.querySelector(".sax");
 const createAudio = () => {};
 
 const notes = [
+  { noteName: "B", noteAudio: "alto_sax_sounds/Middle-B.mp3" },
   { noteName: "C", noteAudio: "alto_sax_sounds/Middle-C.mp3" },
   { noteName: "D", noteAudio: "alto_sax_sounds/Middle-D.mp3" },
   { noteName: "E", noteAudio: "alto_sax_sounds/Middle-E.mp3" },
@@ -15,11 +16,14 @@ const notes = [
 
 const keyPress = (key) => {
   key.style.boxShadow = "0px 0px 0px rgba(0, 0, 0, 0)";
+  setTimeout(() => {
+    key.style.boxShadow = "0px 3px 3px rgba(0, 0, 0, 0.2)";
+  }, "1000");
 };
 
 //create audio
 document.addEventListener("DOMContentLoaded", () => {
-  const createSaxKey = (keyName) => {
+  const createSaxKey = () => {
     const key = document.createElement("button");
     sax.appendChild(key);
     key.style.border = "2px solid gold";
@@ -52,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const key = createSaxKey((keyName = note.noteName));
     key.addEventListener("click", () => {
       playSound(note.noteAudio);
+      keyPress(key);
     });
   });
 });
