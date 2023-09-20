@@ -13,6 +13,10 @@ const notes = [
   { noteName: "High C", noteAudio: "alto_sax_sounds/High-C.mp3" },
 ];
 
+const keyPress = (key) => {
+  key.style.boxShadow = "0px 0px 0px rgba(0, 0, 0, 0)";
+};
+
 //create audio
 document.addEventListener("DOMContentLoaded", () => {
   const createSaxKey = (keyName) => {
@@ -21,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     key.style.border = "2px solid gold";
     key.style.padding = "20px";
     key.style.borderRadius = "50%";
-    key.innerText = keyName ? keyName : "";
+    // key.innerText = keyName ? keyName : "";
     key.style.backgroundColor = "White";
     key.style.boxShadow = "0px 3px 3px rgba(0, 0, 0, 0.2)";
     key.style.background = "linear-gradient(to bottom, #FFFFFF, #E0E0E0)";
@@ -43,12 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error with decoding audio data", err);
       });
   };
-
-  const middleC = createSaxKey("C");
-  const middleD = createSaxKey("D");
-  middleC.addEventListener("click", () => {
-    playSound("alto_sax_sounds/Middle-C.mp3");
-  });
 
   notes.map((note, idx) => {
     const key = createSaxKey((keyName = note.noteName));
