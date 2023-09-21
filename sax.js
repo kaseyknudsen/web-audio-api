@@ -11,11 +11,6 @@ const notes = [
   { noteName: "D", noteAudio: "alto_sax_sounds/Low-D.mp3" },
 ];
 
-const notes2 = [
-  { noteName: "F", noteAudio: "alto_sax_sounds/Middle-B.mp3" },
-  { noteName: "E", noteAudio: "alto_sax_sounds/Middle-C.mp3" },
-  { noteName: "D", noteAudio: "alto_sax_sounds/Middle-D.mp3" },
-];
 
 const keyPress = (key) => {
   key.style.boxShadow = "0px 0px 0px rgba(0, 0, 0, 0)";
@@ -39,6 +34,16 @@ document.addEventListener("DOMContentLoaded", () => {
     key.className = "saxKeyClass";
     return key;
   };
+
+  const createLowCandEb = () => {
+    const key = document.createElement("button")
+    sax.appendChild(key)
+    key.style.border = "2px solid gold";
+    key.style.padding = "20px";
+    key.style.width = "50px"
+    key.style.height = "25px"
+  
+  }
   const audioContext = new AudioContext();
 
   const playSound = (url) => {
@@ -68,4 +73,5 @@ document.addEventListener("DOMContentLoaded", () => {
       keyPress(key);
     });
   });
+  createLowCandEb()
 });
