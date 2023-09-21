@@ -11,7 +11,6 @@ const notes = [
   { noteName: "D", noteAudio: "alto_sax_sounds/Low-D.mp3" },
 ];
 
-
 const keyPress = (key) => {
   key.style.boxShadow = "0px 0px 0px rgba(0, 0, 0, 0)";
   setTimeout(() => {
@@ -36,14 +35,48 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const createLowCandEb = () => {
-    const key = document.createElement("button")
-    sax.appendChild(key)
-    key.style.border = "2px solid gold";
-    key.style.padding = "20px";
-    key.style.width = "50px"
-    key.style.height = "25px"
-  
-  }
+    // Create Eb container to hold the circle
+    const EbContainer = document.createElement("div");
+    EbContainer.style.width = "50px";
+    EbContainer.style.height = "25px"; // Set height to half of the circle’s diameter to show only bottom half
+    EbContainer.style.overflow = "hidden"; // Hide the overflow
+    EbContainer.style.marginTop = "12px";
+    EbContainer.style.marginLeft = "-2px";
+    sax.appendChild(EbContainer);
+
+    // Create Eb key
+    const ebKey = document.createElement("button");
+    EbContainer.appendChild(ebKey);
+    ebKey.style.border = "2px solid gold";
+    ebKey.style.width = "50px";
+    ebKey.style.height = "50px"; // Circle’s diameter
+    ebKey.style.borderRadius = "20px"; // Half of the circle’s diameter
+    ebKey.style.backgroundColor = "White";
+    ebKey.style.boxShadow = "0px 3px 3px rgba(0, 0, 0, 0.2)";
+    ebKey.style.background = "linear-gradient(to bottom, #FFFFFF, #E0E0E0)";
+
+    // Create C container to hold the circle
+    const cContainer = document.createElement("div");
+    cContainer.style.width = "50px";
+    cContainer.style.height = "25px"; // Set height to half of the circle’s diameter to show only bottom half
+    cContainer.style.overflow = "hidden"; // Hide the overflow
+    cContainer.style.marginTop = "4px";
+    cContainer.style.marginLeft = "-2px";
+    sax.appendChild(cContainer);
+
+    //create C key
+    const Ckey = document.createElement("button");
+    cContainer.appendChild(Ckey);
+    Ckey.style.border = "2px solid gold";
+    Ckey.style.width = "50px";
+    Ckey.style.height = "50px"; // Circle’s diameter
+    Ckey.style.borderRadius = "20px"; // Half of the circle’s diameter
+    Ckey.style.marginTop = "-30px"; // Position circle inside container to show only the bottom half
+    // key.style.backgroundColor = "White";
+    // key.style.boxShadow = "0px 3px 3px rgba(0, 0, 0, 0.2)";
+    // key.style.background = "linear-gradient(to bottom, #FFFFFF, #E0E0E0)";
+  };
+
   const audioContext = new AudioContext();
 
   const playSound = (url) => {
@@ -73,5 +106,5 @@ document.addEventListener("DOMContentLoaded", () => {
       keyPress(key);
     });
   });
-  createLowCandEb()
+  createLowCandEb();
 });
