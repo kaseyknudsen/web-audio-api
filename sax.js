@@ -4,14 +4,17 @@ const createAudio = () => {};
 
 const notes = [
   { noteName: "B", noteAudio: "alto_sax_sounds/Middle-B.mp3" },
-  { noteName: "C", noteAudio: "alto_sax_sounds/Middle-C.mp3" },
+  { noteName: "A", noteAudio: "alto_sax_sounds/Middle-A.mp3" },
+  { noteName: "G", noteAudio: "alto_sax_sounds/Middle-G.mp3" },
+  { noteName: "F", noteAudio: "alto_sax_sounds/Low-F.mp3" },
+  { noteName: "E", noteAudio: "alto_sax_sounds/Low-E.mp3" },
+  { noteName: "D", noteAudio: "alto_sax_sounds/Low-D.mp3" },
+];
+
+const notes2 = [
+  { noteName: "F", noteAudio: "alto_sax_sounds/Middle-B.mp3" },
+  { noteName: "E", noteAudio: "alto_sax_sounds/Middle-C.mp3" },
   { noteName: "D", noteAudio: "alto_sax_sounds/Middle-D.mp3" },
-  { noteName: "E", noteAudio: "alto_sax_sounds/Middle-E.mp3" },
-  { noteName: "F", noteAudio: "alto_sax_sounds/Middle-F.mp3" },
-  { noteName: "High G", noteAudio: "alto_sax_sounds/High-G.mp3" },
-  { noteName: "High A", noteAudio: "alto_sax_sounds/High-A.mp3" },
-  { noteName: "High B", noteAudio: "alto_sax_sounds/High-B.mp3" },
-  { noteName: "High C", noteAudio: "alto_sax_sounds/High-C.mp3" },
 ];
 
 const keyPress = (key) => {
@@ -37,12 +40,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return key;
   };
   const audioContext = new AudioContext();
+
   const playSound = (url) => {
     fetch(url)
       .then((response) => response.arrayBuffer())
+      //decodeAudioData asynchronously decodes audio file data from an arrayBuffer that is loaded from fetch. It's then resampled to AudioContext's sampling rate
       .then((arrayBuffer) => audioContext.decodeAudioData(arrayBuffer))
       .then((audioBuffer) => {
         const sourceNode = audioContext.createBufferSource();
+        console.log(sourceNode);
         sourceNode.buffer = audioBuffer;
         sourceNode.connect(audioContext.destination);
         sourceNode.start();
@@ -54,6 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   notes.map((note, idx) => {
     const key = createSaxKey((keyName = note.noteName));
+    if (note.noteName === "G") {
+      key.style.marginBottom = "20px";
+    }
     key.addEventListener("click", () => {
       playSound(note.noteAudio);
       keyPress(key);
