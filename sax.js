@@ -1,3 +1,5 @@
+const middleC = "alto_sax_sounds/Middle-C.mp3";
+console.log(middleC);
 const sax = document.querySelector(".sax");
 
 const createAudio = () => {};
@@ -18,6 +20,13 @@ const keyPress = (key) => {
   }, "1000");
 };
 
+const EbKeyPress = (key) => {
+  key.style.boxShadow = "0px 0px 0px rgba(0, 0, 0, 0)";
+  setTimeout(() => {
+    key.style.boxShadow = "0px -2px 3px rgba(0, 0, 0, 0.2)";
+  }, "1000");
+};
+
 //create audio
 document.addEventListener("DOMContentLoaded", () => {
   const createSaxKey = () => {
@@ -34,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return key;
   };
 
-  const createLowCandEb = () => {
+  const createLowEb = () => {
     // Create Eb container to hold the circle
     const EbContainer = document.createElement("div");
     EbContainer.style.width = "50px";
@@ -52,9 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
     ebKey.style.height = "50px"; // Circle’s diameter
     ebKey.style.borderRadius = "20px"; // Half of the circle’s diameter
     ebKey.style.backgroundColor = "White";
-    ebKey.style.boxShadow = "0px 3px 3px rgba(0, 0, 0, 0.2)";
-    ebKey.style.background = "linear-gradient(to bottom, #FFFFFF, #E0E0E0)";
+    ebKey.style.boxShadow = "0px -2px 3px rgba(0, 0, 0, 0.2)";
+    ebKey.style.background = "linear-gradient(to top, #FFFFFF, #E0E0E0)";
+    return ebKey;
+  };
 
+  const createLowC = () => {
     // Create C container to hold the circle
     const cContainer = document.createElement("div");
     cContainer.style.width = "50px";
@@ -62,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cContainer.style.overflow = "hidden"; // Hide the overflow
     cContainer.style.marginTop = "4px";
     cContainer.style.marginLeft = "-2px";
+
     sax.appendChild(cContainer);
 
     //create C key
@@ -71,10 +84,11 @@ document.addEventListener("DOMContentLoaded", () => {
     Ckey.style.width = "50px";
     Ckey.style.height = "50px"; // Circle’s diameter
     Ckey.style.borderRadius = "20px"; // Half of the circle’s diameter
-    Ckey.style.marginTop = "-30px"; // Position circle inside container to show only the bottom half
-    // key.style.backgroundColor = "White";
-    // key.style.boxShadow = "0px 3px 3px rgba(0, 0, 0, 0.2)";
-    // key.style.background = "linear-gradient(to bottom, #FFFFFF, #E0E0E0)";
+    Ckey.style.marginTop = "-25px"; // Position circle inside container to show only the bottom half
+    Ckey.style.backgroundColor = "White";
+    Ckey.style.boxShadow = "0px 2px 3px rgba(0, 0, 0, 0.2)";
+    Ckey.style.background = "linear-gradient(to bottom, #FFFFFF, #E0E0E0)";
+    return Ckey;
   };
 
   const audioContext = new AudioContext();
@@ -106,5 +120,14 @@ document.addEventListener("DOMContentLoaded", () => {
       keyPress(key);
     });
   });
-  createLowCandEb();
+  const Eb = createLowEb();
+  const C = createLowC();
+  Eb.addEventListener("click", () => {
+    playSound("alto_sax_sounds/Low-Eb.mp3");
+    EbKeyPress(Eb);
+  });
+  C.addEventListener("click", () => {
+    playSound("alto_sax_sounds/Low-C.mp3");
+    keyPress(C);
+  });
 });
