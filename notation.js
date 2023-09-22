@@ -1,22 +1,22 @@
-const { Factory, EasyScore, System } = Vex.Flow;
+const { Factory, Stave, Renderer } = Vex.Flow;
 
 const output = document.querySelector("output");
+
+//creates and SV renderer and attaches it to output from our html file
 const vf = new Factory({
-  renderer: { elementId: "output", width: 500, height: 200 },
+  renderer: { elementId: "output", width: 700, height: 200 },
 });
 
-const score = vf.EasyScore();
-const system = vf.System();
+const WIDTH = 300;
+const X = 10;
 
-system
-  .addStave({
-    voices: [
-      score.voice(score.notes("C#5/q, B4, A4, G#4", { stem: "up" })),
-      score.voice(score.notes("C#4/h, C#4", { stem: "down" })),
-    ],
-  })
-  .addClef("treble")
-  .addTimeSignature("4/4");
+const scoreContext = vf.getContext();
+const stave1 = new Stave(X, 0, WIDTH); //x, y, width
+stave1.addClef("treble").addTimeSignature("4/4");
+stave1.setContext(scoreContext).draw();
 
-vf.draw();
+const stave2 = new Stave(WIDTH + X, 0, WIDTH); // Starts where the first stave ends
+stave2.setContext(scoreContext).draw();
 
+const notesStave1 = []
+const notesStave2 = []
