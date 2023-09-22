@@ -9,19 +9,52 @@ const output = document.querySelector("output");
 // Create an SVG renderer and attach it to the DIV element named "boo".
 const div = document.getElementById("output");
 const renderer = new Renderer(div, Renderer.Backends.SVG);
-renderer.resize(700, 200);
+renderer.resize(800, 200);
 const context = renderer.getContext();
-const X = 10;
+let X = 210;
 const Y = 0;
-const MEASURE_WIDTH = 300;
+const MEASURE_WIDTH = 200;
 const FORMAT_WIDTH = 275;
+const measures = [1, 2, 3, 4];
 
-const stave1 = new Stave(X, Y, MEASURE_WIDTH); //x, y, width
+const measuresArray = [
+  {
+    measureNum: 2,
+    notes: [
+      new StaveNote({ keys: ["e/4"], duration: "q" }),
+      new StaveNote({ keys: ["g/4"], duration: "q" }),
+      new StaveNote({ keys: ["f/4"], duration: "q" }),
+      new StaveNote({ keys: ["a/4"], duration: "q" }),
+    ],
+  },
+  {
+    measureNum: 3,
+    notes: [
+      new StaveNote({ keys: ["a/4"], duration: "q" }),
+      new StaveNote({ keys: ["b/4"], duration: "q" }),
+      new StaveNote({ keys: ["c/5"], duration: "q" }),
+      new StaveNote({ keys: ["d/5"], duration: "q" }),
+    ],
+  },
+];
+
+//1st measure
+const stave1 = new Stave(10, Y, MEASURE_WIDTH); //x, y, width
 stave1.addClef("treble").addTimeSignature("4/4");
 stave1.setContext(context).draw();
 
-const stave2 = new Stave(MEASURE_WIDTH + X, Y, MEASURE_WIDTH); // Starts where the first stave ends
-stave2.setContext(context).draw();
+//create multiple measures
+const newMeasure = measuresArray.map((measure, idx) => {
+  const stave = new Stave(X, Y, MEASURE_WIDTH);
+  stave.setContext(context).draw();
+  X += 200;
+  const voice = new Voice({ num_beats: 4, beat_value: 4 });
+  voice.addTickables(measure.notes);
+  const formatter = new Vex.Flow.Formatter()
+    .joinVoices([voice])
+    .format([voice], 120);
+  voice.draw(context, stave);
+});
 
 const notesStave1 = [
   new StaveNote({ keys: ["d/4"], duration: "q" }),
@@ -31,13 +64,14 @@ const notesStave1 = [
 ];
 
 // Create a voice in 4/4 and add above notes
-const voice = new Voice({ num_beats: 4, beat_value: 4 });
-voice.addTickables(notesStave1);
+const voice1 = new Voice({ num_beats: 4, beat_value: 4 });
+voice1.addTickables(notesStave1);
 
-// Format and justify the notes to 300 pixels
-const formatter = new Vex.Flow.Formatter()
-  .joinVoices([voice])
-  .format([voice], FORMAT_WIDTH);
+// Format and justify the notes to 200 pixels
+const formatter1 = new Vex.Flow.Formatter()
+  .joinVoices([voice1])
+  .format([voice1], 120);
+// Format and justify the notes to 200 pixels
 
 // Render voice
-voice.draw(context, stave1);
+voice1.draw(context, stave1);
