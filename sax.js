@@ -1,17 +1,26 @@
-const middleC = "alto_sax_sounds/Middle-C.mp3";
-console.log(middleC);
 const sax = document.querySelector(".sax");
 
 const createAudio = () => {};
 
+const middleC = "alto_sax_sounds/Middle-C.mp3";
+const middleB = "alto_sax_sounds/Middle-B.mp3";
+const middleA = "alto_sax_sounds/Middle-A.mp3";
+const middleG = "alto_sax_sounds/Middle-G.mp3";
+const lowF = "alto_sax_sounds/Low-F.mp3";
+const lowE = "alto_sax_sounds/Low-E.mp3";
+const lowD = "alto_sax_sounds/Low-D.mp3";
+const lowC = "alto_sax_sounds/Low-C.mp3";
+
 const notes = [
-  { noteName: "B", noteAudio: "alto_sax_sounds/Middle-B.mp3" },
-  { noteName: "A", noteAudio: "alto_sax_sounds/Middle-A.mp3" },
-  { noteName: "G", noteAudio: "alto_sax_sounds/Middle-G.mp3" },
-  { noteName: "F", noteAudio: "alto_sax_sounds/Low-F.mp3" },
-  { noteName: "E", noteAudio: "alto_sax_sounds/Low-E.mp3" },
-  { noteName: "D", noteAudio: "alto_sax_sounds/Low-D.mp3" },
+  { noteName: "B", noteAudio: middleB },
+  { noteName: "A", noteAudio: middleA },
+  { noteName: "G", noteAudio: middleG },
+  { noteName: "F", noteAudio: lowF },
+  { noteName: "E", noteAudio: lowE },
+  { noteName: "D", noteAudio: lowD },
 ];
+
+const noteButtons = ["C", "B", "A", "G", "F", "E", "D", "Low C"];
 
 const keyPress = (key) => {
   key.style.boxShadow = "0px 0px 0px rgba(0, 0, 0, 0)";
@@ -110,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   };
 
-  notes.map((note, idx) => {
+  const notesArray = notes.map((note, idx) => {
     const key = createSaxKey((keyName = note.noteName));
     if (note.noteName === "G") {
       key.style.marginBottom = "20px";
@@ -119,7 +128,9 @@ document.addEventListener("DOMContentLoaded", () => {
       playSound(note.noteAudio);
       keyPress(key);
     });
+    return key;
   });
+  console.log(notesArray);
   const Eb = createLowEb();
   const C = createLowC();
   Eb.addEventListener("click", () => {
@@ -129,5 +140,65 @@ document.addEventListener("DOMContentLoaded", () => {
   C.addEventListener("click", () => {
     playSound("alto_sax_sounds/Low-C.mp3");
     keyPress(C);
+  });
+
+  const buttons = document.querySelector(".notes");
+
+  const buttonsArray = noteButtons.map((button, idx) => {
+    const newButton = document.createElement("button");
+    newButton.style.marginRight = "5px";
+    newButton.style.marginBottom = "5px";
+    newButton.style.padding = "10px";
+    newButton.innerText = button;
+    buttons.appendChild(newButton);
+    newButton.addEventListener("click", () => {
+      if (button === "C") {
+        playSound(middleC);
+        keyPress(notesArray[1]);
+      } else if (button === "B") {
+        playSound(middleB);
+        keyPress(notesArray[0]);
+      } else if (button === "A") {
+        playSound(middleA);
+        keyPress(notesArray[0]);
+        keyPress(notesArray[1]);
+      } else if (button === "G") {
+        playSound(middleG);
+        keyPress(notesArray[0]);
+        keyPress(notesArray[1]);
+        keyPress(notesArray[2]);
+      } else if (button === "F") {
+        playSound(lowF);
+        keyPress(notesArray[0]);
+        keyPress(notesArray[1]);
+        keyPress(notesArray[2]);
+        keyPress(notesArray[3]);
+      } else if (button === "E") {
+        playSound(lowE);
+        keyPress(notesArray[0]);
+        keyPress(notesArray[1]);
+        keyPress(notesArray[2]);
+        keyPress(notesArray[3]);
+        keyPress(notesArray[4]);
+      } else if (button === "D") {
+        playSound(lowD);
+        keyPress(notesArray[0]);
+        keyPress(notesArray[1]);
+        keyPress(notesArray[2]);
+        keyPress(notesArray[3]);
+        keyPress(notesArray[4]);
+        keyPress(notesArray[5]);
+      } else if (button === "Low C") {
+        playSound(lowC)
+        keyPress(notesArray[0])
+        keyPress(notesArray[1])
+        keyPress(notesArray[2])
+        keyPress(notesArray[3])
+        keyPress(notesArray[4])
+        keyPress(notesArray[5])
+        keyPress()
+      }
+    });
+    return newButton;
   });
 });

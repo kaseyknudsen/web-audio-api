@@ -2,10 +2,10 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
-
 }
 
-
+.notes {
+  margin-left: 50%;
+}
 
 /* You can add more key divs and position them along the saxophone body */
-
