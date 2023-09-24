@@ -189,14 +189,13 @@ document.addEventListener("DOMContentLoaded", () => {
         keyPress(notesArray[4]);
         keyPress(notesArray[5]);
       } else if (button === "Low C") {
-        playSound(lowC)
-        keyPress(notesArray[0])
-        keyPress(notesArray[1])
-        keyPress(notesArray[2])
-        keyPress(notesArray[3])
-        keyPress(notesArray[4])
-        keyPress(notesArray[5])
-        keyPress()
+        playSound(lowC);
+        keyPress(notesArray[0]);
+        keyPress(notesArray[1]);
+        keyPress(notesArray[2]);
+        keyPress(notesArray[3]);
+        keyPress(notesArray[4]);
+        keyPress(notesArray[5]);
       }
     });
     return newButton;
