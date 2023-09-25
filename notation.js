@@ -34,12 +34,14 @@ const createMeasure = (X, Y, staveWidth, numBeats, beatValue, notesArray) => {
     stave.setEndBarType(Barline.type.END);
     stave.draw();
   }
+  return allNotes
 };
 
 const notes1 = [
   {
     noteName: "Low A#",
     notation: () => [createNewNote("a#/3", "q", "#")],
+    
   },
   {
     noteName: "Low B",
@@ -180,3 +182,4 @@ createMeasure(10, 0, 600, 8, 4, notes1);
 createMeasure(10, 0, 600, 8, 4, notes2);
 createMeasure(10, 0, 600, 8, 4, notes3);
 createMeasure(10, 0, 600, 8, 4, notes4);
+
