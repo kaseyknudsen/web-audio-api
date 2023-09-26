@@ -1,5 +1,5 @@
 const sax = document.querySelector(".sax");
-
+const palmKeys = document.querySelector("palm-keys");
 const createAudio = () => {};
 
 const middleC = "alto_sax_sounds/Middle-C.mp3";
@@ -160,45 +160,38 @@ document.addEventListener("DOMContentLoaded", () => {
         keyPress(notesArray[0]);
       } else if (button === "A") {
         playSound(middleA);
-        keyPress(notesArray[0]);
-        keyPress(notesArray[1]);
+        for (let i = 0; i < 2; i++) {
+          keyPress(notesArray[i]);
+        }
       } else if (button === "G") {
         playSound(middleG);
-        keyPress(notesArray[0]);
-        keyPress(notesArray[1]);
-        keyPress(notesArray[2]);
+        for (let i = 0; i < 3; i++) {
+          keyPress(notesArray[i]);
+        }
       } else if (button === "F") {
         playSound(lowF);
-        keyPress(notesArray[0]);
-        keyPress(notesArray[1]);
-        keyPress(notesArray[2]);
-        keyPress(notesArray[3]);
+        for (let i = 0; i < 4; i++) {
+          keyPress(notesArray[i]);
+        }
       } else if (button === "E") {
         playSound(lowE);
-        keyPress(notesArray[0]);
-        keyPress(notesArray[1]);
-        keyPress(notesArray[2]);
-        keyPress(notesArray[3]);
-        keyPress(notesArray[4]);
+        for (let i = 0; i < 5; i++) {
+          keyPress(notesArray[i]);
+        }
       } else if (button === "D") {
         playSound(lowD);
-        keyPress(notesArray[0]);
-        keyPress(notesArray[1]);
-        keyPress(notesArray[2]);
-        keyPress(notesArray[3]);
-        keyPress(notesArray[4]);
-        keyPress(notesArray[5]);
+        for (let i = 0; i < 6; i++) {
+          keyPress(notesArray[i]);
+        }
       } else if (button === "Low C") {
         playSound(lowC);
-        keyPress(notesArray[0]);
-        keyPress(notesArray[1]);
-        keyPress(notesArray[2]);
-        keyPress(notesArray[3]);
-        keyPress(notesArray[4]);
-        keyPress(notesArray[5]);
+        for (let i = 0; i < 6; i++) {
+          keyPress(notesArray[i]);
+        }
         keyPress(C);
       }
     });
     return newButton;
   });
 });
+

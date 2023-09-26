@@ -9,3 +9,13 @@
 }
 
 /* You can add more key divs and position them along the saxophone body */
+.palm-keys {
+  width: 25px;
+  height: 45px;
+  border-radius: 50% 50% 50% 50%;
+  background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+  border: 1px solid gold;
+  position: absolute;
+  margin-left: 60px;
+  margin-top: 20px;
+}
