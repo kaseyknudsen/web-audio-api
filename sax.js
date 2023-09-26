@@ -196,6 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
         keyPress(notesArray[3]);
         keyPress(notesArray[4]);
         keyPress(notesArray[5]);
+        keyPress(C);
       }
     });
     return newButton;

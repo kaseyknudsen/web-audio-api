@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "vexflow": "^4.2.3",
+    "web-audio-api": "^0.2.2"
+  }
+}
