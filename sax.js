@@ -5,14 +5,39 @@ const sideKeys = document.querySelector(".side-keys");
 const patchKeys = document.querySelector(".patch-keys");
 const chromaticScale = document.querySelector(".chromatic-scale");
 
-const middleC = "alto_sax_sounds/Middle-C.mp3";
-const middleB = "alto_sax_sounds/Middle-B.mp3";
-const middleA = "alto_sax_sounds/Middle-A.mp3";
-const middleG = "alto_sax_sounds/Middle-G.mp3";
-const lowF = "alto_sax_sounds/Low-F.mp3";
-const lowE = "alto_sax_sounds/Low-E.mp3";
-const lowD = "alto_sax_sounds/Low-D.mp3";
+//import all audio files
+const LowBb = "alto_sax_sounds/Low-Bb.mp3";
+const LowB = "alto_sax_sounds/Low-B.mp3";
 const lowC = "alto_sax_sounds/Low-C.mp3";
+const lowCsharp = "alto_sax_sounds/Low-Db.mp3";
+const lowD = "alto_sax_sounds/Low-D.mp3";
+const lowDsharp = "alto_sax_sounds/Low-Eb.mp3";
+const lowE = "alto_sax_sounds/Low-E.mp3";
+const lowF = "alto_sax_sounds/Low-F.mp3";
+const middleFsharp = "alto_sax_sounds/Low-Gb.mp3";
+const middleG = "alto_sax_sounds/Middle-G.mp3";
+const middleGsharp = "alto_sax_sounds/Middle-Ab.mp3";
+const middleA = "alto_sax_sounds/Middle-A.mp3";
+const middleAsharp = "alto_sax_sounds/Middle-Bb.mp3";
+const middleB = "alto_sax_sounds/Middle-B.mp3";
+const middleC = "alto_sax_sounds/Middle-C.mp3";
+const middleCsharp = "alto_sax_sounds/Middle-Db.mp3";
+const middleD = "alto_sax_sounds/Middle-D.mp3";
+const middleDsharp = "alto_sax_sounds/Middle-Eb.mp3";
+const middleE = "alto_sax_sounds/Middle-E.mp3";
+const middleF = "alto_sax_sounds/Middle-F.mp3";
+const highFsharp = "alto_sax_sounds/High-Gb.mp3";
+const highG = "alto_sax_sounds/High-G.mp3";
+const highGsharp = "alto_sax_sounds/High-Ab.mp3";
+const highA = "alto_sax_sounds/High-A.mp3";
+const highAsharp = "alto_sax_sounds/High-Bb.mp3";
+const highB = "alto_sax_sounds/High-B.mp3";
+const highC = "alto_sax_sounds/High-C.mp3";
+const highCsharp = "alto_sax_sounds/High-Db.mp3";
+const highD = "alto_sax_sounds/High-D.mp3";
+const highDsharp = "alto_sax_sounds/High-Eb.mp3";
+const highE = "alto_sax_sounds/High-E.mp3";
+const highF = "alto_sax_sounds/High-F.mp3";
 
 const frontKeyNotesArray = [
   { noteName: "B", noteAudio: middleB },
@@ -31,7 +56,7 @@ const allNotesInChromaticScale = [
   "Low C",
   "Low C#",
   "Low D",
-  "Low Eb",
+  "Low D#",
   "Low E",
   "Low F",
   "Low F#",
@@ -63,9 +88,12 @@ const allNotesInChromaticScale = [
 
 const keyPress = (key) => {
   key.style.boxShadow = "0px 0px 0px rgba(0, 0, 0, 0)";
+  key.style.background = "grey";
+
   setTimeout(() => {
     key.style.boxShadow = "0px 3px 3px rgba(0, 0, 0, 0.2)";
-  }, "1000");
+    key.style.background = "linear-gradient(to bottom, #FFFFFF, #E0E0E0)";
+  }, "4000");
 };
 
 const EbKeyPress = (key) => {
@@ -185,11 +213,61 @@ document.addEventListener("DOMContentLoaded", () => {
     newButton.style.padding = "10px";
     newButton.innerText = button;
     chromaticScale.appendChild(newButton);
-    newButton.className = "chromatic-scale-button"
+    newButton.className = "chromatic-scale-button";
     newButton.addEventListener("click", () => {
-      if (button === "C") {
-        playSound(middleC);
-        keyPress(notesArray[1]);
+      if (button === "Low Bb") {
+        playSound(LowBb);
+        for (let i = 0; i < 6; i++) {
+          keyPress(notesArray[i]);
+          keyPress(C);
+          keyPress(createdPatchKeysArray[3]);
+        }
+      } else if (button === "Low B") {
+        playSound(LowB);
+        for (let i = 0; i < 6; i++) {
+          keyPress(notesArray[i]);
+          keyPress(C);
+          keyPress(createdPatchKeysArray[1]);
+        }
+      } else if (button === "Low C") {
+        playSound(lowC);
+        for (let i = 0; i < 6; i++) {
+          keyPress(notesArray[i]);
+          keyPress(C);
+        }
+      } else if (button === "Low C#") {
+        playSound(lowCsharp);
+        for (let i = 0; i < 6; i++) {
+          keyPress(notesArray[i]);
+          keyPress(C);
+          keyPress(createdPatchKeysArray[2]);
+        }
+      } else if (button === "Low D") {
+        playSound(lowD);
+        for (let i = 0; i < 6; i++) {
+          keyPress(notesArray[i]);
+        }
+      } else if (button === "Low D#") {
+        playSound(lowDsharp);
+        for (let i = 0; i < 6; i++) {
+          keyPress(notesArray[i]);
+          EbKeyPress(Eb);
+        }
+      } else if (button === "E") {
+        playSound(lowE);
+        for (let i = 0; i < 5; i++) {
+          keyPress(notesArray[i]);
+        }
+      } else if (button === "F") {
+        playSound(lowF);
+        for (let i = 0; i < 4; i++) {
+          keyPress(notesArray[i]);
+        }
+      } else if (button === "Middle F#") {
+        playSound(middleFsharp);
+        for (let i = 0; i < 4; i++) {
+          keyPress(notesArray[i]);
+        }
       } else if (button === "B") {
         playSound(middleB);
         keyPress(notesArray[0]);
@@ -201,21 +279,6 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (button === "G") {
         playSound(middleG);
         for (let i = 0; i < 3; i++) {
-          keyPress(notesArray[i]);
-        }
-      } else if (button === "F") {
-        playSound(lowF);
-        for (let i = 0; i < 4; i++) {
-          keyPress(notesArray[i]);
-        }
-      } else if (button === "E") {
-        playSound(lowE);
-        for (let i = 0; i < 5; i++) {
-          keyPress(notesArray[i]);
-        }
-      } else if (button === "D") {
-        playSound(lowD);
-        for (let i = 0; i < 6; i++) {
           keyPress(notesArray[i]);
         }
       } else if (button === "Low C") {
@@ -265,6 +328,7 @@ const createSideKeys = () => {
 sideKeyArray.forEach((key, idx) => createSideKeys());
 
 const patchKeyArray = ["G#", "B", "C#", "Bb"];
+const createdPatchKeysArray = [];
 
 const createPatchKeys = () => {
   const patchKey = document.createElement("div");
@@ -273,6 +337,7 @@ const createPatchKeys = () => {
   patchKey.style.background = "linear-gradient(to bottom, #ffffff, #e0e0e0)";
   patchKey.style.border = "2px solid gold";
   patchKey.style.position = "absolute";
+  createdPatchKeysArray.push(patchKey);
 };
 
 patchKeyArray.forEach((key, idx) => createPatchKeys());
