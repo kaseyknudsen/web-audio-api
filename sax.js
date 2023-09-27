@@ -1,5 +1,6 @@
 const sax = document.querySelector(".sax");
 const palmKeys = document.querySelector(".palm-keys");
+const sideKeys = document.querySelector(".side-keys");
 const createAudio = () => {};
 
 const middleC = "alto_sax_sounds/Middle-C.mp3";
@@ -205,10 +206,26 @@ const createPalmKeys = () => {
   palmKey.style.height = "45px";
   palmKey.style.borderRadius = "50% 50% 50% 50%";
   palmKey.style.background = "linear-gradient(to bottom, #ffffff, #e0e0e0)";
-  palmKey.style.border = "1px solid gold";
+  palmKey.style.border = "2px solid gold";
   palmKey.style.position = "absolute";
- 
+
   return palmKey;
 };
 
 palmKeyArray.forEach((key, idx) => createPalmKeys());
+
+const sideKeyArray = ["High F", "Alternate C", "Side Bb"];
+
+const createSideKeys = () => {
+  const sideKey = document.createElement("div");
+  sideKeys.appendChild(sideKey);
+  sideKey.style.width = "12px";
+  sideKey.style.height = "40px";
+  sideKey.className = "side-key-class";
+  sideKey.style.borderRadius = "30% 30% 30% 30%";
+  sideKey.style.background = "linear-gradient(to bottom, #ffffff, #e0e0e0)";
+  sideKey.style.border = "2px solid gold";
+  sideKey.style.position = "absolute";
+};
+
+sideKeyArray.forEach((key, idx) => createSideKeys())

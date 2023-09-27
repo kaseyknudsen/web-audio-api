@@ -1,3 +1,7 @@
+.sax {
+  margin-left: 3em;
+}
+
 .saxKeyClass {
   display: flex;
   flex-direction: column;
@@ -6,10 +10,6 @@
 
 .notes {
   margin-left: 50%;
-}
-
-.palmKeys {
-
 }
 
 .palm-key-class {
@@ -23,4 +23,17 @@
 .palm-key-class:nth-child(2) {
   margin-left: 4em;
   margin-top: 5.5em;
+}
+
+.side-key-class {
+  margin-left: -2em;
+  margin-top: 10em;
+}
+.side-key-class:nth-child(1) {
+  margin-left: -2em;
+  margin-top: 13em;
+}
+.side-key-class:nth-child(2) {
+  margin-left: -2em;
+  margin-top: 16em;
 }
