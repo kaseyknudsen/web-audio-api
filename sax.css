@@ -1,8 +1,9 @@
-.sax {
-  margin-left: 3em;
+.container {
+  max-width: 500px;
+  margin-left: 5em;
 }
 
-.saxKeyClass {
+.frontKeyClass {
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
@@ -76,4 +77,30 @@
   border-radius: 50% 50% 10% 10%;
   background: linear-gradient(to bottom, #ffffff, #f0ecec);
   border: 2px solid gold;
+}
+
+.biss-key {
+  margin-left: 0.6rem;
+  position: absolute;
+  margin-top: 2.2rem;
+  height: 20px;
+  width: 20px;
+  border-radius: 50% 50% 50% 50%;
+  background: linear-gradient(to bottom, #ffffff, #f0ecec);
+  border: 2px solid gold;
+}
+
+.chromatic-scale {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: center;
+}
+
+.chromatic-scale-button {
+  font-family: "Courier New", Courier, monospace;
 }

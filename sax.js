@@ -1,8 +1,9 @@
 const sax = document.querySelector(".sax");
+const frontKeys = document.querySelector(".front-keys");
 const palmKeys = document.querySelector(".palm-keys");
 const sideKeys = document.querySelector(".side-keys");
 const patchKeys = document.querySelector(".patch-keys");
-const createAudio = () => {};
+const chromaticScale = document.querySelector(".chromatic-scale");
 
 const middleC = "alto_sax_sounds/Middle-C.mp3";
 const middleB = "alto_sax_sounds/Middle-B.mp3";
@@ -13,7 +14,7 @@ const lowE = "alto_sax_sounds/Low-E.mp3";
 const lowD = "alto_sax_sounds/Low-D.mp3";
 const lowC = "alto_sax_sounds/Low-C.mp3";
 
-const notes = [
+const frontKeyNotesArray = [
   { noteName: "B", noteAudio: middleB },
   { noteName: "A", noteAudio: middleA },
   { noteName: "G", noteAudio: middleG },
@@ -22,7 +23,43 @@ const notes = [
   { noteName: "D", noteAudio: lowD },
 ];
 
-const noteButtons = ["C", "B", "A", "G", "F", "E", "D", "Low C"];
+const frontKeyNames = ["C", "B", "A", "G", "F", "E", "D", "Low C"];
+
+const allNotesInChromaticScale = [
+  "Low Bb",
+  "Low B",
+  "Low C",
+  "Low C#",
+  "Low D",
+  "Low Eb",
+  "Low E",
+  "Low F",
+  "Low F#",
+  "Middle G",
+  "Middle G#",
+  "Middle A",
+  "Middle A#",
+  "Middle B",
+  "Middle C",
+  "Middle C#",
+  "Middle D",
+  "Middle D#",
+  "Middle E",
+  "Middle F",
+  "Middle F#",
+  "High G",
+  "High G#",
+  "High A",
+  "High A#",
+  "High B",
+  "High C",
+  "High C#",
+  "High D",
+  "High D#",
+  "High E",
+  "High F",
+  "High F#",
+];
 
 const keyPress = (key) => {
   key.style.boxShadow = "0px 0px 0px rgba(0, 0, 0, 0)";
@@ -38,7 +75,7 @@ const EbKeyPress = (key) => {
   }, "1000");
 };
 
-//create audio
+//create front key notes
 document.addEventListener("DOMContentLoaded", () => {
   const createSaxKey = () => {
     const key = document.createElement("button");
@@ -46,11 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
     key.style.border = "2px solid gold";
     key.style.padding = "20px";
     key.style.borderRadius = "50%";
-    // key.innerText = keyName ? keyName : "";
     key.style.backgroundColor = "White";
     key.style.boxShadow = "0px 3px 3px rgba(0, 0, 0, 0.2)";
     key.style.background = "linear-gradient(to bottom, #FFFFFF, #E0E0E0)";
-    key.className = "saxKeyClass";
+    key.className = "frontKeyClass";
     return key;
   };
 
@@ -121,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   };
 
-  const notesArray = notes.map((note, idx) => {
+  const notesArray = frontKeyNotesArray.map((note, idx) => {
     const key = createSaxKey((keyName = note.noteName));
     if (note.noteName === "G") {
       key.style.marginBottom = "20px";
@@ -132,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     return key;
   });
-  console.log(notesArray);
   const Eb = createLowEb();
   const C = createLowC();
   Eb.addEventListener("click", () => {
@@ -144,15 +179,13 @@ document.addEventListener("DOMContentLoaded", () => {
     keyPress(C);
   });
 
-  const buttons = document.querySelector(".notes");
-
-  const buttonsArray = noteButtons.map((button, idx) => {
+  //create buttons for chr scale
+  allNotesInChromaticScale.map((button, idx) => {
     const newButton = document.createElement("button");
-    newButton.style.marginRight = "5px";
-    newButton.style.marginBottom = "5px";
     newButton.style.padding = "10px";
     newButton.innerText = button;
-    buttons.appendChild(newButton);
+    chromaticScale.appendChild(newButton);
+    newButton.className = "chromatic-scale-button"
     newButton.addEventListener("click", () => {
       if (button === "C") {
         playSound(middleC);
