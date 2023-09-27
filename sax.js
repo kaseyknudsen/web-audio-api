@@ -1,6 +1,7 @@
 const sax = document.querySelector(".sax");
 const palmKeys = document.querySelector(".palm-keys");
 const sideKeys = document.querySelector(".side-keys");
+const patchKeys = document.querySelector(".patch-keys");
 const createAudio = () => {};
 
 const middleC = "alto_sax_sounds/Middle-C.mp3";
@@ -228,4 +229,17 @@ const createSideKeys = () => {
   sideKey.style.position = "absolute";
 };
 
-sideKeyArray.forEach((key, idx) => createSideKeys())
+sideKeyArray.forEach((key, idx) => createSideKeys());
+
+const patchKeyArray = ["G#", "B", "C#", "Bb"];
+
+const createPatchKeys = () => {
+  const patchKey = document.createElement("div");
+  patchKeys.appendChild(patchKey);
+  patchKey.className = "patch-key-class";
+  patchKey.style.background = "linear-gradient(to bottom, #ffffff, #e0e0e0)";
+  patchKey.style.border = "2px solid gold";
+  patchKey.style.position = "absolute";
+};
+
+patchKeyArray.forEach((key, idx) => createPatchKeys());
