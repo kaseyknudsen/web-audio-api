@@ -1,5 +1,5 @@
 const sax = document.querySelector(".sax");
-const palmKeys = document.querySelector("palm-keys");
+const palmKeys = document.querySelector(".palm-keys");
 const createAudio = () => {};
 
 const middleC = "alto_sax_sounds/Middle-C.mp3";
@@ -195,3 +195,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+const palmKeyArray = ["F", "E", "D"];
+
+const createPalmKeys = () => {
+  const palmKey = document.createElement("div");
+  palmKeys.appendChild(palmKey);
+  palmKey.style.width = "25px";
+  palmKey.className = "palm-key-class";
+  palmKey.style.height = "45px";
+  palmKey.style.borderRadius = "50% 50% 50% 50%";
+  palmKey.style.background = "linear-gradient(to bottom, #ffffff, #e0e0e0)";
+  palmKey.style.border = "1px solid gold";
+  palmKey.style.position = "absolute";
+ 
+  return palmKey;
+};
+
+palmKeyArray.forEach((key, idx) => createPalmKeys());
