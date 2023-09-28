@@ -6,6 +6,7 @@ const output = document.querySelector("output");
 const div = document.getElementById("output");
 const newDiv = document.getElementById("chrScale");
 
+
 const createNewNote = (key, duration, accidental) => {
   const note = new StaveNote({ keys: [key], duration: duration });
   if (accidental) note.addModifier(new Accidental(accidental));
@@ -183,3 +184,7 @@ createMeasure(10, 0, 600, 8, 4, notes2);
 createMeasure(10, 0, 600, 8, 4, notes3);
 createMeasure(10, 0, 600, 8, 4, notes4);
 
+const svgElements = document.getElementsByTagName("svg")
+const gtags = document.getElementsByTagName("g")
+console.log(svgElements[0])
+console.log(gtags)
