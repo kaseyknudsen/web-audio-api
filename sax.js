@@ -147,13 +147,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   };
 
-  const notesArray = frontKeyNotesArray.forEach((note, idx) => {
+  const notesArray = frontKeyNotesArray.map((note, idx) => {
     const key = createSaxKey();
     if (note === "G") {
       key.style.marginBottom = "20px";
     }
     return key;
   });
+
   const Eb = createLowEb();
   const C = createLowC();
 
