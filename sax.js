@@ -39,16 +39,7 @@ const highDsharp = "alto_sax_sounds/High-Eb.mp3";
 const highE = "alto_sax_sounds/High-E.mp3";
 const highF = "alto_sax_sounds/High-F.mp3";
 
-const frontKeyNotesArray = [
-  { noteName: "B", noteAudio: middleB },
-  { noteName: "A", noteAudio: middleA },
-  { noteName: "G", noteAudio: middleG },
-  { noteName: "F", noteAudio: lowF },
-  { noteName: "E", noteAudio: lowE },
-  { noteName: "D", noteAudio: lowD },
-];
-
-const frontKeyNames = ["C", "B", "A", "G", "F", "E", "D", "Low C"];
+const frontKeyNotesArray = ["B", "A", "G", "F", "E", "D"];
 
 const allNotesInChromaticScale = [
   "Low Bb",
@@ -98,9 +89,10 @@ const keyPress = (key) => {
 
 const EbKeyPress = (key) => {
   key.style.boxShadow = "0px 0px 0px rgba(0, 0, 0, 0)";
+  key.style.background = "grey";
   setTimeout(() => {
     key.style.boxShadow = "0px -2px 3px rgba(0, 0, 0, 0.2)";
-  }, "1000");
+  }, "4000");
 };
 
 //create front key notes
@@ -155,27 +147,15 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   };
 
-  const notesArray = frontKeyNotesArray.map((note, idx) => {
-    const key = createSaxKey((keyName = note.noteName));
-    if (note.noteName === "G") {
+  const notesArray = frontKeyNotesArray.forEach((note, idx) => {
+    const key = createSaxKey();
+    if (note === "G") {
       key.style.marginBottom = "20px";
     }
-    key.addEventListener("click", () => {
-      playSound(note.noteAudio);
-      keyPress(key);
-    });
     return key;
   });
   const Eb = createLowEb();
   const C = createLowC();
-  Eb.addEventListener("click", () => {
-    playSound("alto_sax_sounds/Low-Eb.mp3");
-    EbKeyPress(Eb);
-  });
-  C.addEventListener("click", () => {
-    playSound("alto_sax_sounds/Low-C.mp3");
-    keyPress(C);
-  });
 
   //create buttons for chr scale
   allNotesInChromaticScale.map((button, idx) => {
