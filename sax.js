@@ -108,12 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const createSaxKey = () => {
     const key = document.createElement("button");
     sax.appendChild(key);
-    key.style.border = "2px solid gold";
-    key.style.padding = "20px";
-    key.style.borderRadius = "50%";
-    key.style.backgroundColor = "White";
-    key.style.boxShadow = "0px 3px 3px rgba(0, 0, 0, 0.2)";
-    key.style.background = "linear-gradient(to bottom, #FFFFFF, #E0E0E0)";
     key.className = "frontKeyClass";
     return key;
   };
@@ -121,48 +115,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const createLowEb = () => {
     // Create Eb container to hold the circle
     const EbContainer = document.createElement("div");
-    EbContainer.style.width = "50px";
-    EbContainer.style.height = "25px"; // Set height to half of the circle’s diameter to show only bottom half
-    EbContainer.style.overflow = "hidden"; // Hide the overflow
-    EbContainer.style.marginTop = "12px";
-    EbContainer.style.marginLeft = "-2px";
+    EbContainer.className = "Ebcontainer";
     sax.appendChild(EbContainer);
-
     // Create Eb key
     const ebKey = document.createElement("button");
     EbContainer.appendChild(ebKey);
-    ebKey.style.border = "2px solid gold";
-    ebKey.style.width = "50px";
-    ebKey.style.height = "50px"; // Circle’s diameter
-    ebKey.style.borderRadius = "20px"; // Half of the circle’s diameter
-    ebKey.style.backgroundColor = "White";
-    ebKey.style.boxShadow = "0px -2px 3px rgba(0, 0, 0, 0.2)";
-    ebKey.style.background = "linear-gradient(to top, #FFFFFF, #E0E0E0)";
+    ebKey.className = "ebClass";
     return ebKey;
   };
 
   const createLowC = () => {
     // Create C container to hold the circle
     const cContainer = document.createElement("div");
-    cContainer.style.width = "50px";
-    cContainer.style.height = "25px"; // Set height to half of the circle’s diameter to show only bottom half
-    cContainer.style.overflow = "hidden"; // Hide the overflow
-    cContainer.style.marginTop = "4px";
-    cContainer.style.marginLeft = "-2px";
-
+    cContainer.className = "cContainerClass";
     sax.appendChild(cContainer);
-
     //create C key
     const Ckey = document.createElement("button");
     cContainer.appendChild(Ckey);
-    Ckey.style.border = "2px solid gold";
-    Ckey.style.width = "50px";
-    Ckey.style.height = "50px"; // Circle’s diameter
-    Ckey.style.borderRadius = "20px"; // Half of the circle’s diameter
-    Ckey.style.marginTop = "-25px"; // Position circle inside container to show only the bottom half
-    Ckey.style.backgroundColor = "White";
-    Ckey.style.boxShadow = "0px 2px 3px rgba(0, 0, 0, 0.2)";
-    Ckey.style.background = "linear-gradient(to bottom, #FFFFFF, #E0E0E0)";
+    Ckey.className = "cKeyClass";
     return Ckey;
   };
 
@@ -298,14 +268,7 @@ const palmKeyArray = ["F", "E", "D"];
 const createPalmKeys = () => {
   const palmKey = document.createElement("div");
   palmKeys.appendChild(palmKey);
-  palmKey.style.width = "25px";
   palmKey.className = "palm-key-class";
-  palmKey.style.height = "45px";
-  palmKey.style.borderRadius = "50% 50% 50% 50%";
-  palmKey.style.background = "linear-gradient(to bottom, #ffffff, #e0e0e0)";
-  palmKey.style.border = "2px solid gold";
-  palmKey.style.position = "absolute";
-
   return palmKey;
 };
 
@@ -316,13 +279,7 @@ const sideKeyArray = ["High F", "Alternate C", "Side Bb"];
 const createSideKeys = () => {
   const sideKey = document.createElement("div");
   sideKeys.appendChild(sideKey);
-  sideKey.style.width = "12px";
-  sideKey.style.height = "40px";
   sideKey.className = "side-key-class";
-  sideKey.style.borderRadius = "30% 30% 30% 30%";
-  sideKey.style.background = "linear-gradient(to bottom, #ffffff, #e0e0e0)";
-  sideKey.style.border = "2px solid gold";
-  sideKey.style.position = "absolute";
 };
 
 sideKeyArray.forEach((key, idx) => createSideKeys());
@@ -334,9 +291,6 @@ const createPatchKeys = () => {
   const patchKey = document.createElement("div");
   patchKeys.appendChild(patchKey);
   patchKey.className = "patch-key-class";
-  patchKey.style.background = "linear-gradient(to bottom, #ffffff, #e0e0e0)";
-  patchKey.style.border = "2px solid gold";
-  patchKey.style.position = "absolute";
   createdPatchKeysArray.push(patchKey);
 };
 

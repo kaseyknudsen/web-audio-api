@@ -7,6 +7,45 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
+  border: 2px solid gold;
+  padding: 20px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.Ebcontainer {
+  width: 50px;
+  height: 25px;
+  overflow: hidden;
+  margin-top: 12px;
+  margin-left: -2px;
+}
+.ebClass {
+  border: 2px solid gold;
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
+  background: linear-gradient(to top, #ffffff, #e0e0e0);
+  box-shadow: 0px -2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.cContainerClass {
+  width: 50px;
+  height: 25px;
+  overflow: hidden;
+  margin-top: 4px;
+  margin-left: -2px;
+}
+
+.cKeyClass {
+  border: 2px solid gold;
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
+  margin-top: -25px;
+  background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .notes {
@@ -16,6 +55,12 @@
 .palm-key-class {
   margin-left: 4em;
   margin-top: 0.5em;
+  width: 25px;
+  height: 45px;
+  border-radius: 50% 50% 50% 50%;
+  background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+  border: 2px solid gold;
+  position: absolute;
 }
 .palm-key-class:nth-child(1) {
   margin-left: 5.5em;
@@ -29,6 +74,12 @@
 .side-key-class {
   margin-left: -2em;
   margin-top: 10em;
+  position: absolute;
+  width: 12px;
+  height: 40px;
+  border-radius: 30% 30% 30% 30%;
+  background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+  border: 2px solid gold;
 }
 .side-key-class:nth-child(1) {
   margin-left: -2em;
@@ -37,6 +88,12 @@
 .side-key-class:nth-child(2) {
   margin-left: -2em;
   margin-top: 16em;
+}
+
+.patch-key-class {
+  background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+  border: 2px solid gold;
+  position: absolute;
 }
 
 .patch-key-class:nth-child(1) {
