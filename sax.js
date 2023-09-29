@@ -149,8 +149,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const notesArray = frontKeyNotesArray.map((note, idx) => {
     const key = createSaxKey();
+    if (note === "B") {
+      key.style.marginBottom = "25px";
+    }
+    if (note === "A") {
+      key.style.marginTop = "40px";
+    }
     if (note === "G") {
       key.style.marginBottom = "20px";
+      key.style.marginLeft = "30px"
     }
     return key;
   });
