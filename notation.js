@@ -1,11 +1,16 @@
 const { Factory, Stave, Renderer, Voice, StaveNote, Barline, Accidental } =
   Vex.Flow;
 
+const sax = document.querySelector(".sax");
+const frontKeys = document.querySelector(".front-keys");
+const palmKeys = document.querySelector(".palm-keys");
+const sideKeys = document.querySelector(".side-keys");
+const patchKeys = document.querySelector(".patch-keys");
+const chromaticScale = document.querySelector(".chromatic-scale");
 const root = document.querySelector(".root");
 const output = document.querySelector("output");
 const div = document.getElementById("output");
 const newDiv = document.getElementById("chrScale");
-
 
 const createNewNote = (key, duration, accidental) => {
   const note = new StaveNote({ keys: [key], duration: duration });
@@ -23,26 +28,26 @@ const createMeasure = (X, Y, staveWidth, numBeats, beatValue, notesArray) => {
   stave.setContext(context).draw();
   const voice = new Voice({ num_beats: numBeats, beat_value: beatValue });
   let allNotes = notesArray.flatMap((note, idx) => note.notation());
- 
+
   voice.addTickables(allNotes);
   const formatter = new Vex.Flow.Formatter()
     .joinVoices([voice])
     .format([voice], staveWidth);
   voice.draw(context, stave);
+
   stave.setEndBarType(Barline.type.SINGLE);
   stave.draw();
   if (notesArray === notes4) {
     stave.setEndBarType(Barline.type.END);
     stave.draw();
   }
-  return allNotes
+  return allNotes;
 };
 
 const notes1 = [
   {
     noteName: "Low A#",
     notation: () => [createNewNote("a#/3", "q", "#")],
-    
   },
   {
     noteName: "Low B",
@@ -184,7 +189,71 @@ createMeasure(10, 0, 600, 8, 4, notes2);
 createMeasure(10, 0, 600, 8, 4, notes3);
 createMeasure(10, 0, 600, 8, 4, notes4);
 
-const svgElements = document.getElementsByTagName("svg")
-const gtags = document.getElementsByTagName("g")
-console.log(svgElements[0])
-console.log(gtags)
+// const svgElements = document.getElementsByTagName("svg")
+// const gtags = document.getElementsByTagName("g")
+// console.log(svgElements[0])
+// console.log(gtags)
+
+const allNotes = [
+  { noteName: "Low Bb", path: "alto_sax_sounds/Low-Bb.mp3" },
+  { noteName: "Low B", path: "alto_sax_sounds/Low-B.mp3" },
+  { noteName: "Low C", path: "alto_sax_sounds/Low-C.mp3" },
+  { noteName: "Low C#", path: "alto_sax_sounds/Low-Db.mp3" },
+  { noteName: "Low D", path: "alto_sax_sounds/Low-D.mp3" },
+  { noteName: "Low D#", path: "alto_sax_sounds/Low-Eb.mp3" },
+  { noteName: "Low E", path: "alto_sax_sounds/Low-E.mp3" },
+  { noteName: "Low F", path: "alto_sax_sounds/Low-F.mp3" },
+  { noteName: "Low F#", path: "alto_sax_sounds/Low-Gb.mp3" },
+  { noteName: "Middle G", path: "alto_sax_sounds/Middle-G.mp3" },
+  { noteName: "Middle G#", path: "alto_sax_sounds/Middle-Ab.mp3" },
+  { noteName: "Middle A", path: "alto_sax_sounds/Middle-A.mp3" },
+  { noteName: "Middle A#", path: "alto_sax_sounds/Middle-Bb.mp3" },
+  { noteName: "Middle B", path: "alto_sax_sounds/Middle-B.mp3" },
+  { noteName: "Middle C", path: "alto_sax_sounds/Middle-C.mp3" },
+  { noteName: "Middle C#", path: "alto_sax_sounds/Middle-Db.mp3" },
+  { noteName: "Middle D", path: "alto_sax_sounds/Middle-D.mp3" },
+  { noteName: "Middle D#", path: "alto_sax_sounds/Middle-Eb.mp3" },
+  { noteName: "Middle E", path: "alto_sax_sounds/Middle-E.mp3" },
+  { noteName: "Middle F", path: "alto_sax_sounds/Middle-F.mp3" },
+  { noteName: "High F#", path: "alto_sax_sounds/High-Gb.mp3" },
+  { noteName: "High G", path: "alto_sax_sounds/High-G.mp3" },
+  { noteName: "High G#", path: "alto_sax_sounds/High-Ab.mp3" },
+  { noteName: "High A", path: "alto_sax_sounds/High-A.mp3" },
+  { noteName: "High A#", path: "alto_sax_sounds/High-A#.mp3" },
+  { noteName: "High B", path: "alto_sax_sounds/High-B.mp3" },
+  { noteName: "High C", path: "alto_sax_sounds/High-C.mp3" },
+  { noteName: "High C#", path: "alto_sax_sounds/High-Db.mp3" },
+  { noteName: "High D", path: "alto_sax_sounds/High-D.mp3" },
+  { noteName: "High D#", path: "alto_sax_sounds/High-Eb.mp3" },
+  { noteName: "High E", path: "alto_sax_sounds/High-E.mp3" },
+  { noteName: "High F", path: "alto_sax_sounds/High-F.mp3" },
+];
+
+const audioContext = new AudioContext();
+
+const playSound = (url) => {
+  fetch(url)
+    .then((response) => response.arrayBuffer())
+    //decodeAudioData asynchronously decodes audio file data from an arrayBuffer that is loaded from fetch. It's then resampled to AudioContext's sampling rate
+    .then((arrayBuffer) => audioContext.decodeAudioData(arrayBuffer))
+    .then((audioBuffer) => {
+      const sourceNode = audioContext.createBufferSource();
+      console.log(sourceNode);
+      sourceNode.buffer = audioBuffer;
+      sourceNode.connect(audioContext.destination);
+      sourceNode.start();
+    })
+    .catch((err) => {
+      console.error("Error with decoding audio data", err);
+    });
+};
+
+const attachNoteClickListener = () => {
+  for (let g of document.querySelectorAll("svg g")) {
+    g.addEventListener("click", () => {
+      playSound(allNotes[0].path);
+    });
+  }
+};
+
+attachNoteClickListener();

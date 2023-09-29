@@ -1,43 +1,43 @@
-const sax = document.querySelector(".sax");
-const frontKeys = document.querySelector(".front-keys");
-const palmKeys = document.querySelector(".palm-keys");
-const sideKeys = document.querySelector(".side-keys");
-const patchKeys = document.querySelector(".patch-keys");
-const chromaticScale = document.querySelector(".chromatic-scale");
+// const sax = document.querySelector(".sax");
+// const frontKeys = document.querySelector(".front-keys");
+// const palmKeys = document.querySelector(".palm-keys");
+// const sideKeys = document.querySelector(".side-keys");
+// const patchKeys = document.querySelector(".patch-keys");
+// const chromaticScale = document.querySelector(".chromatic-scale");
 
 //import all audio files
-const LowBb = "alto_sax_sounds/Low-Bb.mp3";
-const LowB = "alto_sax_sounds/Low-B.mp3";
-const lowC = "alto_sax_sounds/Low-C.mp3";
-const lowCsharp = "alto_sax_sounds/Low-Db.mp3";
-const lowD = "alto_sax_sounds/Low-D.mp3";
-const lowDsharp = "alto_sax_sounds/Low-Eb.mp3";
-const lowE = "alto_sax_sounds/Low-E.mp3";
-const lowF = "alto_sax_sounds/Low-F.mp3";
-const middleFsharp = "alto_sax_sounds/Low-Gb.mp3";
-const middleG = "alto_sax_sounds/Middle-G.mp3";
-const middleGsharp = "alto_sax_sounds/Middle-Ab.mp3";
-const middleA = "alto_sax_sounds/Middle-A.mp3";
-const middleAsharp = "alto_sax_sounds/Middle-Bb.mp3";
-const middleB = "alto_sax_sounds/Middle-B.mp3";
-const middleC = "alto_sax_sounds/Middle-C.mp3";
-const middleCsharp = "alto_sax_sounds/Middle-Db.mp3";
-const middleD = "alto_sax_sounds/Middle-D.mp3";
-const middleDsharp = "alto_sax_sounds/Middle-Eb.mp3";
-const middleE = "alto_sax_sounds/Middle-E.mp3";
-const middleF = "alto_sax_sounds/Middle-F.mp3";
-const highFsharp = "alto_sax_sounds/High-Gb.mp3";
-const highG = "alto_sax_sounds/High-G.mp3";
-const highGsharp = "alto_sax_sounds/High-Ab.mp3";
-const highA = "alto_sax_sounds/High-A.mp3";
-const highAsharp = "alto_sax_sounds/High-Bb.mp3";
-const highB = "alto_sax_sounds/High-B.mp3";
-const highC = "alto_sax_sounds/High-C.mp3";
-const highCsharp = "alto_sax_sounds/High-Db.mp3";
-const highD = "alto_sax_sounds/High-D.mp3";
-const highDsharp = "alto_sax_sounds/High-Eb.mp3";
-const highE = "alto_sax_sounds/High-E.mp3";
-const highF = "alto_sax_sounds/High-F.mp3";
+// const LowBb = "alto_sax_sounds/Low-Bb.mp3";
+// const LowB = "alto_sax_sounds/Low-B.mp3";
+// const lowC = "alto_sax_sounds/Low-C.mp3";
+// const lowCsharp = "alto_sax_sounds/Low-Db.mp3";
+// const lowD = "alto_sax_sounds/Low-D.mp3";
+// const lowDsharp = "alto_sax_sounds/Low-Eb.mp3";
+// const lowE = "alto_sax_sounds/Low-E.mp3";
+// const lowF = "alto_sax_sounds/Low-F.mp3";
+// const middleFsharp = "alto_sax_sounds/Low-Gb.mp3";
+// const middleG = "alto_sax_sounds/Middle-G.mp3";
+// const middleGsharp = "alto_sax_sounds/Middle-Ab.mp3";
+// const middleA = "alto_sax_sounds/Middle-A.mp3";
+// const middleAsharp = "alto_sax_sounds/Middle-Bb.mp3";
+// const middleB = "alto_sax_sounds/Middle-B.mp3";
+// const middleC = "alto_sax_sounds/Middle-C.mp3";
+// const middleCsharp = "alto_sax_sounds/Middle-Db.mp3";
+// const middleD = "alto_sax_sounds/Middle-D.mp3";
+// const middleDsharp = "alto_sax_sounds/Middle-Eb.mp3";
+// const middleE = "alto_sax_sounds/Middle-E.mp3";
+// const middleF = "alto_sax_sounds/Middle-F.mp3";
+// const highFsharp = "alto_sax_sounds/High-Gb.mp3";
+// const highG = "alto_sax_sounds/High-G.mp3";
+// const highGsharp = "alto_sax_sounds/High-Ab.mp3";
+// const highA = "alto_sax_sounds/High-A.mp3";
+// const highAsharp = "alto_sax_sounds/High-Bb.mp3";
+// const highB = "alto_sax_sounds/High-B.mp3";
+// const highC = "alto_sax_sounds/High-C.mp3";
+// const highCsharp = "alto_sax_sounds/High-Db.mp3";
+// const highD = "alto_sax_sounds/High-D.mp3";
+// const highDsharp = "alto_sax_sounds/High-Eb.mp3";
+// const highE = "alto_sax_sounds/High-E.mp3";
+// const highF = "alto_sax_sounds/High-F.mp3";
 
 const frontKeyNotesArray = ["B", "A", "G", "F", "E", "D"];
 
@@ -157,7 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (note === "G") {
       key.style.marginBottom = "20px";
-      key.style.marginLeft = "30px"
     }
     return key;
   });
