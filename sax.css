@@ -5,6 +5,7 @@
 
 .frontKeyClass {
   display: flex;
+  margin-left: 1em;
   flex-direction: column;
   margin-bottom: 5px;
   border: 2px solid gold;
@@ -14,12 +15,46 @@
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
+.high-Fsharp-key {
+  margin-left: -1em;
+  margin-top: 17em;
+  position: absolute;
+  width: 14px;
+  height: 38px;
+  border-radius: 30% 30% 30% 30%;
+  background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+  border: 2px solid gold;
+}
+
+.high-G-key {
+}
+
+.alternate-Fsharp-key {
+  margin-left: -1.1em;
+  margin-top: 20em;
+  position: absolute;
+  width: 18px;
+  height: 30px;
+  border-radius: 20% 20% 20% 20%;
+  background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+  border: 2px solid gold;
+}
+
+/*  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 25px solid gold;
+  position: absolute;
+  margin-top: 20em;
+  margin-left: -1.2em; */
+
 .Ebcontainer {
   width: 50px;
   height: 25px;
   overflow: hidden;
-  margin-top: 12px;
-  margin-left: -2px;
+  margin-top: 1.8em;
+  margin-left: 0.8em;
 }
 .ebClass {
   border: 2px solid gold;
@@ -35,7 +70,7 @@
   height: 25px;
   overflow: hidden;
   margin-top: 4px;
-  margin-left: -2px;
+  margin-left: 0.8em;
 }
 
 .cKeyClass {
@@ -52,6 +87,9 @@
   margin-left: 50%;
 }
 
+.palm-keys {
+  margin-left: 1.6em;
+}
 .palm-key-class {
   margin-left: 4em;
   margin-top: 0.5em;
@@ -71,12 +109,16 @@
   margin-top: 5.5em;
 }
 
+.side-keys {
+  margin-left: -0.7em;
+}
+
 .side-key-class {
   margin-left: -2em;
   margin-top: 10em;
   position: absolute;
   width: 12px;
-  height: 40px;
+  height: 35px;
   border-radius: 30% 30% 30% 30%;
   background: linear-gradient(to bottom, #ffffff, #e0e0e0);
   border: 2px solid gold;
@@ -88,6 +130,10 @@
 .side-key-class:nth-child(2) {
   margin-left: -2em;
   margin-top: 16em;
+}
+
+.patch-keys {
+  margin-left: 1.5em;
 }
 
 .patch-key-class {
@@ -137,11 +183,11 @@
 }
 
 .biss-key {
-  margin-left: 0.6rem;
+  margin-left: 1.4em;
   position: absolute;
   margin-top: 2.2rem;
-  height: 20px;
-  width: 20px;
+  height: 24px;
+  width: 24px;
   border-radius: 50% 50% 50% 50%;
   background: linear-gradient(to bottom, #ffffff, #f0ecec);
   border: 2px solid gold;
