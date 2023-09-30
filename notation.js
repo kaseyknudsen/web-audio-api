@@ -153,7 +153,7 @@ const notes3 = [
   {
     noteName: "middle F#",
     notation: () => [createNewNote("f#/5", "q", "#")],
-    path: "alto_sax_sounds/High-Gb.mp3",
+    path: "alto_sax_sounds/Middle-Gb.mp3",
   },
   {
     noteName: "high G",
@@ -241,8 +241,8 @@ const playSound = (url) => {
     });
 };
 
-const allSVGgs = document.querySelectorAll("svg g");
-
+const allSVGgs = document.querySelectorAll("svg g.vf-notehead");
+console.log(allSVGgs)
 const attachNoteClickListener = () => {
   allSVGgs.forEach((g, idx) => {
     if (allNotesArray[idx]) {
