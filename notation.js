@@ -12,6 +12,114 @@ const output = document.querySelector("output");
 const div = document.getElementById("output");
 const newDiv = document.getElementById("chrScale");
 
+//create saxophone
+const frontKeyNotesArray = ["B", "A", "G", "F", "E", "D"];
+
+const keyPress = (key) => {
+  key.style.boxShadow = "0px 0px 0px rgba(0, 0, 0, 0)";
+  key.style.background = "grey";
+
+  setTimeout(() => {
+    key.style.boxShadow = "0px 3px 3px rgba(0, 0, 0, 0.2)";
+    key.style.background = "linear-gradient(to bottom, #FFFFFF, #E0E0E0)";
+  }, "4000");
+};
+
+
+const EbKeyPress = (key) => {
+  key.style.boxShadow = "0px 0px 0px rgba(0, 0, 0, 0)";
+  key.style.background = "grey";
+  setTimeout(() => {
+    key.style.boxShadow = "0px -2px 3px rgba(0, 0, 0, 0.2)";
+  }, "4000");
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const createSaxKey = () => {
+    const key = document.createElement("button");
+    sax.appendChild(key);
+    key.className = "frontKeyClass";
+    return key;
+  };
+
+  const createLowEb = () => {
+    // Create Eb container to hold the circle
+    const EbContainer = document.createElement("div");
+    EbContainer.className = "Ebcontainer";
+    sax.appendChild(EbContainer);
+    // Create Eb key
+    const ebKey = document.createElement("button");
+    EbContainer.appendChild(ebKey);
+    ebKey.className = "ebClass";
+    return ebKey;
+  };
+
+  const createLowC = () => {
+    // Create C container to hold the circle
+    const cContainer = document.createElement("div");
+    cContainer.className = "cContainerClass";
+    sax.appendChild(cContainer);
+    //create C key
+    const Ckey = document.createElement("button");
+    cContainer.appendChild(Ckey);
+    Ckey.className = "cKeyClass";
+    return Ckey;
+  };
+
+  const notesArray = frontKeyNotesArray.map((note, idx) => {
+    const key = createSaxKey();
+    if (note === "B") {
+      key.style.marginBottom = "25px";
+    }
+    if (note === "A") {
+      key.style.marginTop = "40px";
+    }
+    if (note === "G") {
+      key.style.marginBottom = "20px";
+    }
+    return key;
+  });
+
+  const Eb = createLowEb();
+  const C = createLowC();
+});
+
+const palmKeyArray = ["F", "E", "D"];
+
+const createPalmKeys = () => {
+  const palmKey = document.createElement("div");
+  palmKeys.appendChild(palmKey);
+  palmKey.className = "palm-key-class";
+  return palmKey;
+};
+
+palmKeyArray.forEach((key, idx) => createPalmKeys());
+
+const sideKeyArray = ["High F", "Alternate C", "Side Bb"];
+
+const createSideKeys = () => {
+  const sideKey = document.createElement("div");
+  sideKeys.appendChild(sideKey);
+  sideKey.className = "side-key-class";
+};
+
+sideKeyArray.forEach((key, idx) => createSideKeys());
+
+const patchKeyArray = ["G#", "B", "C#", "Bb"];
+const createdPatchKeysArray = [];
+
+const createPatchKeys = () => {
+  const patchKey = document.createElement("div");
+  patchKeys.appendChild(patchKey);
+  patchKey.className = "patch-key-class";
+  createdPatchKeysArray.push(patchKey);
+};
+
+patchKeyArray.forEach((key, idx) => createPatchKeys());
+
+
+//create notation
+
 const createNewNote = (key, duration, accidental) => {
   const note = new StaveNote({ keys: [key], duration: duration });
   if (accidental) note.addModifier(new Accidental(accidental));
@@ -28,7 +136,6 @@ const createMeasure = (X, Y, staveWidth, numBeats, beatValue, notesArray) => {
   stave.setContext(context).draw();
   const voice = new Voice({ num_beats: numBeats, beat_value: beatValue });
   let allNotes = notesArray.flatMap((note, idx) => note.notation());
-  console.log(allNotes);
   voice.addTickables(allNotes);
   const formatter = new Vex.Flow.Formatter()
     .joinVoices([voice])
@@ -242,7 +349,6 @@ const playSound = (url) => {
 };
 
 const allSVGgs = document.querySelectorAll("svg g.vf-notehead");
-console.log(allSVGgs)
 const attachNoteClickListener = () => {
   allSVGgs.forEach((g, idx) => {
     if (allNotesArray[idx]) {
