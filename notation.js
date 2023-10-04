@@ -6,6 +6,11 @@ const frontKeys = document.querySelector(".front-keys");
 const palmKeys = document.querySelector(".palm-keys");
 const sideKeys = document.querySelector(".side-keys");
 const patchKeys = document.querySelector(".patch-keys");
+const octaveKey = document.querySelector(".octave-key");
+const highFsharpKey = document.querySelector(".high-Fsharp-key");
+const alternateFsharpKey = document.querySelector(".alternate-Fsharp-key");
+const highGKey = document.querySelector(".high-G-key");
+const bissKey = document.querySelector(".biss-key");
 const chromaticScale = document.querySelector(".chromatic-scale");
 const root = document.querySelector(".root");
 const output = document.querySelector("output");
@@ -64,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return Ckey;
   };
 
-  const notesArray = ["B", "A", "G", "F", "E", "D"].map((note, idx) => {
+  const frontKeyNotesArray = ["B", "A", "G", "F", "E", "D"].map((note, idx) => {
     const key = createSaxKey();
     if (note === "B") {
       key.style.marginBottom = "25px";
@@ -81,29 +86,41 @@ document.addEventListener("DOMContentLoaded", () => {
   const Eb = createLowEb();
   const C = createLowC();
 
-  const createPalmKeys = ["F", "E", "D"].map((key, idx) => {
+  const palmKeysArray = ["F", "E", "D"].map((key, idx) => {
     const palmKey = document.createElement("div");
     palmKeys.appendChild(palmKey);
     palmKey.className = "palm-key-class";
     return palmKey;
   });
 
-  const createSideKeys = ["High F", "Alternate C", "Side Bb"].map(
-    (key, idx) => {
-      const sideKey = document.createElement("div");
-      sideKeys.appendChild(sideKey);
-      sideKey.className = "side-key-class";
-      return sideKey;
-    }
-  );
+  const sideKeysArray = ["High F", "Alternate C", "Side Bb"].map((key, idx) => {
+    const sideKey = document.createElement("div");
+    sideKeys.appendChild(sideKey);
+    sideKey.className = "side-key-class";
+    return sideKey;
+  });
 
-  const createPatchKeys = ["G#", "B", "C#", "Bb"].map((key, idx) => {
+  const patchKeysArray = ["G#", "B", "C#", "Bb"].map((key, idx) => {
     const patchKey = document.createElement("div");
     patchKeys.appendChild(patchKey);
     patchKey.className = "patch-key-class";
     return patchKey;
   });
 
+  const allSaxKeys = [
+    ...patchKeysArray,
+    ...palmKeysArray,
+    ...sideKeysArray,
+    Eb,
+    C,
+    ...frontKeyNotesArray,
+    octaveKey,
+    bissKey,
+    highFsharpKey,
+    alternateFsharpKey,
+    highGKey,
+  ];
+  console.log(allSaxKeys);
   //create notation
 
   const createNewNote = (key, duration, accidental) => {
