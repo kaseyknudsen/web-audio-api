@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderer.resize(900, 200);
     const context = renderer.getContext();
     const stave = new Stave(X, Y, staveWidth);
-    if (notesArray === notes1) stave.addClef("treble");
+    // if (notesArray === notes) stave.addClef("treble");
     stave.setContext(context).draw();
     const voice = new Voice({ num_beats: numBeats, beat_value: beatValue });
     let allNotes = notesArray.flatMap((note, idx) => note.notation());
@@ -130,14 +130,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     stave.setEndBarType(Barline.type.SINGLE);
     stave.draw();
-    if (notesArray === notes4) {
-      stave.setEndBarType(Barline.type.END);
-      stave.draw();
-    }
+    // if (notesArray === notes4) {
+    //   stave.setEndBarType(Barline.type.END);
+    //   stave.draw();
+    // }
     return allNotes;
   };
 
-  const notes1 = [
+  const notes = [
     {
       noteName: "Low A#",
       notation: () => [createNewNote("a#/3", "q", "#")],
@@ -178,9 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
       notation: () => [createNewNote("f/4", "q")],
       path: "alto_sax_sounds/Low-F.mp3",
     },
-  ];
-
-  const notes2 = [
     {
       noteName: "low F#",
       notation: () => [createNewNote("f#/4", "q", "#")],
@@ -221,8 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
       notation: () => [createNewNote("c#/5", "q", "#")],
       path: "alto_sax_sounds/Middle-Db.mp3",
     },
-  ];
-  const notes3 = [
+
     {
       noteName: "middle D",
       notation: () => [createNewNote("d/5", "q")],
@@ -263,9 +259,6 @@ document.addEventListener("DOMContentLoaded", () => {
       notation: () => [createNewNote("a/5", "q")],
       path: "alto_sax_sounds/High-A.mp3",
     },
-  ];
-
-  const notes4 = [
     {
       noteName: "high A#",
       notation: () => [createNewNote("a#/5", "q", "#")],
@@ -308,13 +301,11 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-  const allNotesArray = [...notes1, ...notes2, ...notes3, ...notes4];
-
   //X, Y, staveWidth, numBeats, beatValue, notesArray
-  createMeasure(10, 0, 600, 8, 4, notes1);
-  createMeasure(10, 0, 600, 8, 4, notes2);
-  createMeasure(10, 0, 600, 8, 4, notes3);
-  createMeasure(10, 0, 600, 8, 4, notes4);
+  createMeasure(10, 0, 600, 8, 4, notes.slice(0, 8));
+  createMeasure(10, 0, 600, 8, 4, notes.slice(8, 16));
+  createMeasure(10, 0, 600, 8, 4, notes.slice(16, 24));
+  createMeasure(10, 0, 600, 8, 4, notes.slice(24, 33));
 
   const audioContext = new AudioContext();
 
@@ -337,9 +328,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const allSVGgs = document.querySelectorAll("svg g.vf-notehead");
   const attachNoteClickListener = () => {
     allSVGgs.forEach((g, idx) => {
-      if (allNotesArray[idx]) {
+      if (notes[idx]) {
         g.addEventListener("click", () => {
-          playSound(allNotesArray[idx].path);
+          playSound(notes[idx].path);
         });
       }
     });
