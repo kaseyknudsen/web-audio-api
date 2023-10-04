@@ -108,12 +108,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const allSaxKeys = [
-    ...patchKeysArray,
-    ...palmKeysArray,
-    ...sideKeysArray,
     Eb,
     C,
     ...frontKeyNotesArray,
+    ...patchKeysArray,
+    ...palmKeysArray,
+    ...sideKeysArray,
     octaveKey,
     bissKey,
     highFsharpKey,
@@ -345,9 +345,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const allSVGgs = document.querySelectorAll("svg g.vf-notehead");
   const attachNoteClickListener = () => {
     allSVGgs.forEach((g, idx) => {
-      if (notes[idx]) {
+      const note = notes[idx];
+      if (note) {
         g.addEventListener("click", () => {
-          playSound(notes[idx].path);
+          playSound(note.path);
+          console.log(note);
         });
       }
     });
