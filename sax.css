@@ -1,7 +1,5 @@
 .outer-container {
   padding: 3em 2em 2em 3em;
-  display: flex;
-  flex-direction: column;
 }
 
 .title {
@@ -210,7 +208,5 @@
 }
 
 .root {
-  display: flex;
-  flex-direction: column;
-  position: relative;
+  /* margin-left: 16em; */
 }

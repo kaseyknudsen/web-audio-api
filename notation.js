@@ -15,7 +15,6 @@ const chromaticScale = document.querySelector(".chromatic-scale");
 const root = document.querySelector(".root");
 const output = document.querySelector("output");
 const div = document.getElementById("output");
-const newDiv = document.getElementById("chrScale");
 
 //create saxophone
 
