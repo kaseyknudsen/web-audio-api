@@ -1,7 +1,19 @@
+.outer-container {
+  padding: 3em 2em 2em 3em;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: "Libre Baskerville", serif;
+  text-align: center;
+}
+
 .container {
-  max-width: 500px;
-  margin-left: 5em;
   margin-top: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .frontKeyClass {
@@ -197,17 +209,8 @@
   border: 2px solid gold;
 }
 
-.chromatic-scale {
-  margin-top: 2em;
+.root {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: start;
-  align-items: center;
-}
-
-.chromatic-scale-button {
-  font-family: "Courier New", Courier, monospace;
+  flex-direction: column;
+  position: relative;
 }
