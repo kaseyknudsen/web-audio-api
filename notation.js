@@ -106,21 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return patchKey;
   });
 
-  const allSaxKeys = [
-    Eb,
-    C,
-    ...frontKeyNotesArray,
-    ...patchKeysArray,
-    ...palmKeysArray,
-    ...sideKeysArray,
-    octaveKey,
-    bissKey,
-    highFsharpKey,
-    alternateFsharpKey,
-    highGKey,
-  ];
-  console.log(allSaxKeys);
-  //create notation
+  //create noteName1
 
   const createNewNote = (key, duration, accidental) => {
     const note = new StaveNote({ keys: [key], duration: duration });
@@ -137,7 +123,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // if (notesArray === notes) stave.addClef("treble");
     stave.setContext(context).draw();
     const voice = new Voice({ num_beats: numBeats, beat_value: beatValue });
-    let allNotes = notesArray.flatMap((note, idx) => note.notation());
+    let allNotes = notesArray.flatMap((note, idx) => {
+      const flattenAllNotes = note.noteName1();
+
+      return flattenAllNotes;
+    });
     voice.addTickables(allNotes);
     const formatter = new Vex.Flow.Formatter()
       .joinVoices([voice])
@@ -155,8 +145,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const notes = [
     {
-      noteName: "Low A#",
-      notation: () => [createNewNote("a#/3", "q", "#")],
+      noteName: "A#/Bb",
+      noteName1: () => [createNewNote("a#/3", "q", "#")],
+      noteName2: () => [createNewNote("bb/3", "q", "b")],
       path: "alto_sax_sounds/Low-Bb.mp3",
       keyPressFunction: () => {
         frontKeyNotesArray.forEach((key, idx) => keyPress(key)),
@@ -165,8 +156,9 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     },
     {
-      noteName: "Low B",
-      notation: () => [createNewNote("b/3", "q")],
+      noteName: "B/Cb",
+      noteName1: () => [createNewNote("b/3", "q")],
+      noteName2: () => [createNewNote("cb/3", "q", "b")],
       path: "alto_sax_sounds/Low-B.mp3",
       keyPressFunction: () => {
         frontKeyNotesArray.forEach((key, idx) => keyPress(key)),
@@ -175,16 +167,18 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     },
     {
-      noteName: "Low C",
-      notation: () => [createNewNote("c/4", "q")],
+      noteName: "C/B#",
+      noteName1: () => [createNewNote("c/4", "q")],
+      noteName2: () => [createNewNote("b#/4", "q", "#")],
       path: "alto_sax_sounds/Low-C.mp3",
       keyPressFunction: () => {
         frontKeyNotesArray.forEach((key, idx) => keyPress(key)), keyPress(C);
       },
     },
     {
-      noteName: "low C#",
-      notation: () => [createNewNote("c#/4", "q", "#")],
+      noteName: "C#/Db",
+      noteName1: () => [createNewNote("c#/4", "q", "#")],
+      noteName2: () => [createNewNote("db/4", "q", "b")],
       path: "alto_sax_sounds/Low-Db.mp3",
       keyPressFunction: () => {
         frontKeyNotesArray.forEach((key, idx) => keyPress(key)),
@@ -194,23 +188,25 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       noteName: "low D",
-      notation: () => [createNewNote("d/4", "q")],
+      noteName1: () => [createNewNote("d/4", "q")],
       path: "alto_sax_sounds/Low-D.mp3",
       keyPressFunction: () => {
         frontKeyNotesArray.forEach((key, idx) => keyPress(key));
       },
     },
     {
-      noteName: "low D#",
-      notation: () => [createNewNote("d#/4", "q", "#")],
+      noteName: "D#/Eb",
+      noteName1: () => [createNewNote("d#/4", "q", "#")],
+      noteName2: () => [createNewNote("eb/4", "q", "b")],
       path: "alto_sax_sounds/Low-Eb.mp3",
       keyPressFunction: () => {
         frontKeyNotesArray.forEach((key, idx) => keyPress(key)), keyPress(Eb);
       },
     },
     {
-      noteName: "low E",
-      notation: () => [createNewNote("e/4", "q")],
+      noteName: "E/Fb",
+      noteName1: () => [createNewNote("e/4", "q")],
+      noteName2: () => [createNewNote("fb/4", "q", "b")],
       path: "alto_sax_sounds/Low-E.mp3",
       keyPressFunction: () => {
         for (let i = 0; i < frontKeyNotesArray.length - 1; i++) {
@@ -219,8 +215,9 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     },
     {
-      noteName: "low F",
-      notation: () => [createNewNote("f/4", "q")],
+      noteName: "F/E#",
+      noteName1: () => [createNewNote("f/4", "q")],
+      noteName2: () => [createNewNote("e#/4", "q", "#")],
       path: "alto_sax_sounds/Low-F.mp3",
       keyPressFunction: () => {
         for (let i = 0; i < frontKeyNotesArray.length - 2; i++) {
@@ -229,8 +226,9 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     },
     {
-      noteName: "low F#",
-      notation: () => [createNewNote("f#/4", "q", "#")],
+      noteName: "F#/Gb",
+      noteName1: () => [createNewNote("f#/4", "q", "#")],
+      noteName2: () => [createNewNote("gb/4", "q", "b")],
       path: "alto_sax_sounds/Low-Gb.mp3",
       keyPressFunction: () => {
         for (let i = 0; i < frontKeyNotesArray.length - 3; i++) {
@@ -240,8 +238,8 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     },
     {
-      noteName: "middle G",
-      notation: () => [createNewNote("g/4", "q")],
+      noteName: "G",
+      noteName1: () => [createNewNote("g/4", "q")],
       path: "alto_sax_sounds/Middle-G.mp3",
       keyPressFunction: () => {
         for (let i = 0; i < frontKeyNotesArray.length - 3; i++) {
@@ -250,8 +248,9 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     },
     {
-      noteName: "middle G#",
-      notation: () => [createNewNote("g#/4", "q", "#")],
+      noteName: "G#/Ab",
+      noteName1: () => [createNewNote("g#/4", "q", "#")],
+      noteName2: () => [createNewNote("ab/4", "q", "b")],
       path: "alto_sax_sounds/Middle-Ab.mp3",
       keyPressFunction: () => {
         for (let i = 0; i < frontKeyNotesArray.length - 3; i++) {
@@ -261,8 +260,8 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     },
     {
-      noteName: "middle A",
-      notation: () => [createNewNote("a/4", "q")],
+      noteName: "A",
+      noteName1: () => [createNewNote("a/4", "q")],
       path: "alto_sax_sounds/Middle-A.mp3",
       keyPressFunction: () => {
         for (let i = 0; i < frontKeyNotesArray.length - 4; i++) {
@@ -271,110 +270,114 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     },
     {
-      noteName: "middle Bb",
-      notation: () => [createNewNote("a#/4", "q", "#")],
+      noteName: "A#/Bb",
+      noteName1: () => [createNewNote("a#/4", "q", "#")],
+      noteName2: () => [createNewNote("bb/4", "q", "b")],
       path: "alto_sax_sounds/Middle-Bb.mp3",
     },
     {
-      noteName: "middle B",
-      notation: () => [createNewNote("b/4", "q")],
+      noteName: "B/Cb",
+      noteName1: () => [createNewNote("b/4", "q")],
+      noteName2: () => [createNewNote("cb/4", "q", "b")],
       path: "alto_sax_sounds/Middle-B.mp3",
     },
     {
-      noteName: "middle C",
-      notation: () => [createNewNote("c/5", "q")],
+      noteName: "C/B#",
+      noteName1: () => [createNewNote("c/5", "q")],
+      noteName2: () => [createNewNote("b#/5", "q", "#")],
       path: "alto_sax_sounds/Middle-C.mp3",
     },
     {
-      noteName: "middle C#",
-      notation: () => [createNewNote("c#/5", "q", "#")],
+      noteName: "C#/Db",
+      noteName1: () => [createNewNote("c#/5", "q", "#")],
+      noteName1: () => [createNewNote("db/5", "q", "b")],
       path: "alto_sax_sounds/Middle-Db.mp3",
     },
 
     {
       noteName: "middle D",
-      notation: () => [createNewNote("d/5", "q")],
+      noteName1: () => [createNewNote("d/5", "q")],
       path: "alto_sax_sounds/Middle-D.mp3",
     },
     {
       noteName: "middle D#",
-      notation: () => [createNewNote("d#/5", "q", "#")],
+      noteName1: () => [createNewNote("d#/5", "q", "#")],
       path: "alto_sax_sounds/Middle-Eb.mp3",
     },
     {
       noteName: "middle E",
-      notation: () => [createNewNote("e/5", "q")],
+      noteName1: () => [createNewNote("e/5", "q")],
       path: "alto_sax_sounds/Middle-E.mp3",
     },
     {
       noteName: "middle F",
-      notation: () => [createNewNote("f/5", "q")],
+      noteName1: () => [createNewNote("f/5", "q")],
       path: "alto_sax_sounds/Middle-F.mp3",
     },
     {
       noteName: "middle F#",
-      notation: () => [createNewNote("f#/5", "q", "#")],
+      noteName1: () => [createNewNote("f#/5", "q", "#")],
       path: "alto_sax_sounds/Middle-Gb.mp3",
     },
     {
       noteName: "high G",
-      notation: () => [createNewNote("g/5", "q")],
+      noteName1: () => [createNewNote("g/5", "q")],
       path: "alto_sax_sounds/High-G.mp3",
     },
     {
       noteName: "high G#",
-      notation: () => [createNewNote("g#/5", "q", "#")],
+      noteName1: () => [createNewNote("g#/5", "q", "#")],
       path: "alto_sax_sounds/High-Ab.mp3",
     },
     {
       noteName: "high A",
-      notation: () => [createNewNote("a/5", "q")],
+      noteName1: () => [createNewNote("a/5", "q")],
       path: "alto_sax_sounds/High-A.mp3",
     },
     {
       noteName: "high A#",
-      notation: () => [createNewNote("a#/5", "q", "#")],
+      noteName1: () => [createNewNote("a#/5", "q", "#")],
       path: "alto_sax_sounds/High-A#.mp3",
     },
     {
       noteName: "high B",
-      notation: () => [createNewNote("b/5", "q")],
+      noteName1: () => [createNewNote("b/5", "q")],
       path: "alto_sax_sounds/High-B.mp3",
     },
     {
       noteName: "high C",
-      notation: () => [createNewNote("c/6", "q")],
+      noteName1: () => [createNewNote("c/6", "q")],
       path: "alto_sax_sounds/High-C.mp3",
     },
     {
       noteName: "high C#",
-      notation: () => [createNewNote("c#/6", "q", "#")],
+      noteName1: () => [createNewNote("c#/6", "q", "#")],
       path: "alto_sax_sounds/High-Db.mp3",
     },
     {
       noteName: "high D",
-      notation: () => [createNewNote("d/6", "q")],
+      noteName1: () => [createNewNote("d/6", "q")],
       path: "alto_sax_sounds/High-D.mp3",
     },
     {
       noteName: "high D#",
-      notation: () => [createNewNote("d#/6", "q", "#")],
+      noteName1: () => [createNewNote("d#/6", "q", "#")],
       path: "alto_sax_sounds/High-Eb.mp3",
     },
     {
       noteName: "high E",
-      notation: () => [createNewNote("e/6", "q")],
+      noteName1: () => [createNewNote("e/6", "q")],
       path: "alto_sax_sounds/High-E.mp3",
     },
     {
       noteName: "high F",
-      notation: () => [createNewNote("f/6", "q")],
+      noteName1: () => [createNewNote("f/6", "q")],
       path: "alto_sax_sounds/High-F.mp3",
     },
   ];
 
   //X, Y, staveWidth, numBeats, beatValue, notesArray
-  createMeasure(10, 0, 600, 8, 4, notes.slice(0, 8));
+  createMeasure(10, 0, 700, 8, 4, notes.slice(0, 8));
   createMeasure(10, 0, 600, 8, 4, notes.slice(8, 16));
   createMeasure(10, 0, 600, 8, 4, notes.slice(16, 24));
   createMeasure(10, 0, 600, 8, 4, notes.slice(24, 33));
