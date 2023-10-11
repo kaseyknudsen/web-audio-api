@@ -158,61 +158,117 @@ document.addEventListener("DOMContentLoaded", () => {
       noteName: "Low A#",
       notation: () => [createNewNote("a#/3", "q", "#")],
       path: "alto_sax_sounds/Low-Bb.mp3",
+      keyPressFunction: () => {
+        frontKeyNotesArray.forEach((key, idx) => keyPress(key)),
+          keyPress(C),
+          keyPress(patchKeysArray[3]);
+      },
     },
     {
       noteName: "Low B",
       notation: () => [createNewNote("b/3", "q")],
       path: "alto_sax_sounds/Low-B.mp3",
+      keyPressFunction: () => {
+        frontKeyNotesArray.forEach((key, idx) => keyPress(key)),
+          keyPress(C),
+          keyPress(patchKeysArray[1]);
+      },
     },
     {
       noteName: "Low C",
       notation: () => [createNewNote("c/4", "q")],
       path: "alto_sax_sounds/Low-C.mp3",
+      keyPressFunction: () => {
+        frontKeyNotesArray.forEach((key, idx) => keyPress(key)), keyPress(C);
+      },
     },
     {
       noteName: "low C#",
       notation: () => [createNewNote("c#/4", "q", "#")],
       path: "alto_sax_sounds/Low-Db.mp3",
+      keyPressFunction: () => {
+        frontKeyNotesArray.forEach((key, idx) => keyPress(key)),
+          keyPress(C),
+          keyPress(patchKeysArray[2]);
+      },
     },
     {
       noteName: "low D",
       notation: () => [createNewNote("d/4", "q")],
       path: "alto_sax_sounds/Low-D.mp3",
+      keyPressFunction: () => {
+        frontKeyNotesArray.forEach((key, idx) => keyPress(key));
+      },
     },
     {
       noteName: "low D#",
       notation: () => [createNewNote("d#/4", "q", "#")],
       path: "alto_sax_sounds/Low-Eb.mp3",
+      keyPressFunction: () => {
+        frontKeyNotesArray.forEach((key, idx) => keyPress(key)), keyPress(Eb);
+      },
     },
     {
       noteName: "low E",
       notation: () => [createNewNote("e/4", "q")],
       path: "alto_sax_sounds/Low-E.mp3",
+      keyPressFunction: () => {
+        for (let i = 0; i < frontKeyNotesArray.length - 1; i++) {
+          keyPress(frontKeyNotesArray[i]);
+        }
+      },
     },
     {
       noteName: "low F",
       notation: () => [createNewNote("f/4", "q")],
       path: "alto_sax_sounds/Low-F.mp3",
+      keyPressFunction: () => {
+        for (let i = 0; i < frontKeyNotesArray.length - 2; i++) {
+          keyPress(frontKeyNotesArray[i]);
+        }
+      },
     },
     {
       noteName: "low F#",
       notation: () => [createNewNote("f#/4", "q", "#")],
       path: "alto_sax_sounds/Low-Gb.mp3",
+      keyPressFunction: () => {
+        for (let i = 0; i < frontKeyNotesArray.length - 3; i++) {
+          keyPress(frontKeyNotesArray[i]);
+          keyPress(frontKeyNotesArray[4]);
+        }
+      },
     },
     {
       noteName: "middle G",
       notation: () => [createNewNote("g/4", "q")],
       path: "alto_sax_sounds/Middle-G.mp3",
+      keyPressFunction: () => {
+        for (let i = 0; i < frontKeyNotesArray.length - 3; i++) {
+          keyPress(frontKeyNotesArray[i]);
+        }
+      },
     },
     {
       noteName: "middle G#",
       notation: () => [createNewNote("g#/4", "q", "#")],
       path: "alto_sax_sounds/Middle-Ab.mp3",
+      keyPressFunction: () => {
+        for (let i = 0; i < frontKeyNotesArray.length - 3; i++) {
+          keyPress(frontKeyNotesArray[i]);
+          keyPress(patchKeysArray[0]);
+        }
+      },
     },
     {
       noteName: "middle A",
       notation: () => [createNewNote("a/4", "q")],
       path: "alto_sax_sounds/Middle-A.mp3",
+      keyPressFunction: () => {
+        for (let i = 0; i < frontKeyNotesArray.length - 4; i++) {
+          keyPress(frontKeyNotesArray[i]);
+        }
+      },
     },
     {
       noteName: "middle Bb",
@@ -348,6 +404,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (note) {
         g.addEventListener("click", () => {
           playSound(note.path);
+          note.keyPressFunction();
           console.log(note);
         });
       }
