@@ -274,6 +274,12 @@ document.addEventListener("DOMContentLoaded", () => {
       noteName1: () => [createNewNote("a#/4", "q", "#")],
       noteName2: () => [createNewNote("bb/4", "q", "b")],
       path: "alto_sax_sounds/Middle-Bb.mp3",
+      keyPressFunction: () => {
+        for (let i = 0; i < frontKeyNotesArray.length - 4; i++) {
+          keyPress(frontKeyNotesArray[i]);
+        }
+        keyPress(bissKey)
+      }
     },
     {
       noteName: "B/Cb",
