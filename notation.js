@@ -200,7 +200,8 @@ document.addEventListener("DOMContentLoaded", () => {
       noteName2: () => [createNewNote("eb/4", "q", "b")],
       path: "alto_sax_sounds/Low-Eb.mp3",
       keyPressFunction: () => {
-        frontKeyNotesArray.forEach((key, idx) => keyPress(key)), keyPress(Eb);
+        frontKeyNotesArray.forEach((key, idx) => keyPress(key));
+        keyPress(Eb);
       },
     },
     {
@@ -278,72 +279,128 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < frontKeyNotesArray.length - 4; i++) {
           keyPress(frontKeyNotesArray[i]);
         }
-        keyPress(bissKey)
-      }
+        keyPress(bissKey);
+      },
     },
     {
       noteName: "B/Cb",
       noteName1: () => [createNewNote("b/4", "q")],
       noteName2: () => [createNewNote("cb/4", "q", "b")],
       path: "alto_sax_sounds/Middle-B.mp3",
+      keyPressFunction: () => {
+        for (let i = 0; i < frontKeyNotesArray.length - 5; i++) {
+          keyPress(frontKeyNotesArray[i]);
+        }
+      },
     },
     {
       noteName: "C/B#",
       noteName1: () => [createNewNote("c/5", "q")],
       noteName2: () => [createNewNote("b#/5", "q", "#")],
       path: "alto_sax_sounds/Middle-C.mp3",
+      keyPressFunction: () => {
+        keyPress(frontKeyNotesArray[1]);
+      },
     },
     {
       noteName: "C#/Db",
       noteName1: () => [createNewNote("c#/5", "q", "#")],
       noteName2: () => [createNewNote("db/5", "q", "b")],
       path: "alto_sax_sounds/Middle-Db.mp3",
+      keyPressFunction: () => null,
     },
 
     {
       noteName: "D",
       noteName1: () => [createNewNote("d/5", "q")],
       path: "alto_sax_sounds/Middle-D.mp3",
+      keyPressFunction: () => {
+        frontKeyNotesArray.forEach((key, idx) => keyPress(key)),
+          keyPress(octaveKey);
+      },
     },
     {
       noteName: "D#/Eb",
       noteName1: () => [createNewNote("d#/5", "q", "#")],
       noteName2: () => [createNewNote("eb/5", "q", "b")],
       path: "alto_sax_sounds/Middle-Eb.mp3",
+      keyPressFunction: () => {
+        frontKeyNotesArray.forEach((key) => keyPress(key));
+        keyPress(octaveKey);
+        keyPress(Eb);
+      },
     },
     {
       noteName: "E/Fb",
       noteName1: () => [createNewNote("e/5", "q")],
       noteName2: () => [createNewNote("fb/5", "q", "b")],
       path: "alto_sax_sounds/Middle-E.mp3",
+      keyPressFunction: () => {
+        for (let i = 0; i < frontKeyNotesArray.length - 1; i++) {
+          keyPress(frontKeyNotesArray[i]);
+        }
+        keyPress(octaveKey);
+      },
     },
     {
       noteName: "F/E#",
       noteName1: () => [createNewNote("f/5", "q")],
       noteName2: () => [createNewNote("e#/5", "q", "#")],
       path: "alto_sax_sounds/Middle-F.mp3",
+      keyPressFunction: () => {
+        for (let i = 0; i < frontKeyNotesArray.length - 2; i++) {
+          keyPress(frontKeyNotesArray[i]);
+        }
+        keyPress(octaveKey);
+      },
     },
     {
       noteName: "F#/Gb",
       noteName1: () => [createNewNote("f#/5", "q", "#")],
       noteName2: () => [createNewNote("gb/5", "q", "b")],
       path: "alto_sax_sounds/Middle-Gb.mp3",
+      keyPressFunction: () => {
+        for (let i = 0; i < frontKeyNotesArray.length - 3; i++) {
+          keyPress(frontKeyNotesArray[i]);
+        }
+        keyPress(frontKeyNotesArray[4]);
+        keyPress(octaveKey);
+      },
     },
     {
       noteName: "G",
       noteName1: () => [createNewNote("g/5", "q")],
       path: "alto_sax_sounds/High-G.mp3",
+      keyPressFunction: () => {
+        for (let i = 0; i < frontKeyNotesArray.length - 3; i++) {
+          keyPress(frontKeyNotesArray[i]);
+        }
+        keyPress(octaveKey);
+      },
     },
     {
       noteName: "G#/Ab",
       noteName1: () => [createNewNote("g#/5", "q", "#")],
       noteName2: () => [createNewNote("ab/5", "q", "b")],
       path: "alto_sax_sounds/High-Ab.mp3",
+      keyPressFunction: () => {
+        for (let i = 0; i < frontKeyNotesArray.length - 3; i++) {
+          keyPress(frontKeyNotesArray[i]);
+        }
+        keyPress(patchKeysArray[0]);
+        keyPress(octaveKey);
+      },
     },
     {
       noteName: "A",
       noteName1: () => [createNewNote("a/5", "q")],
       path: "alto_sax_sounds/High-A.mp3",
+      keyPressFunction: () => {
+        for (let i = 0; i < frontKeyNotesArray.length - 4; i++) {
+          keyPress(frontKeyNotesArray[i]);
+        }
+        keyPress(octaveKey);
+      },
     },
     {
       noteName: "A#/Bb",
