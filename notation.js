@@ -25,7 +25,7 @@ const keyPress = (key) => {
   setTimeout(() => {
     key.style.boxShadow = "0px 3px 3px rgba(0, 0, 0, 0.2)";
     key.style.background = "linear-gradient(to bottom, #FFFFFF, #E0E0E0)";
-  }, "4000");
+  }, "3000");
 };
 
 const EbKeyPress = (key) => {
