@@ -404,7 +404,7 @@ document.addEventListener("DOMContentLoaded", () => {
       noteName: "A#/Bb",
       noteName1: () => [createNewNote("a#/5", "q", "#")],
       noteName2: () => [createNewNote("bb/5", "q", "b")],
-      path: "alto_sax_sounds/High-A#.mp3",
+      path: "alto_sax_sounds/High-Bb.mp3",
       keyPressFunction: () => {
         keyPress(frontKeyNotesArray[0]);
         keyPress(bissKey);
