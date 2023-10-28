@@ -25,7 +25,7 @@ const keyPress = (key) => {
   setTimeout(() => {
     key.style.boxShadow = "0px 3px 3px rgba(0, 0, 0, 0.2)";
     key.style.background = "linear-gradient(to bottom, #FFFFFF, #E0E0E0)";
-  }, "3000");
+  }, "2000");
 };
 
 const EbKeyPress = (key) => {
@@ -106,16 +106,22 @@ document.addEventListener("DOMContentLoaded", () => {
     return patchKey;
   });
 
-  //create noteName1
-
   const createNewNote = (key, duration, accidental) => {
     const note = new StaveNote({ keys: [key], duration: duration });
     if (accidental) note.addModifier(new Accidental(accidental));
     return note;
   };
 
-  const createMeasure = (X, Y, staveWidth, numBeats, beatValue, notesArray) => {
+  const createMeasureAndAddNotes = (
+    X = 10,
+    Y = 0,
+    staveWidth = 600,
+    numBeats = 8,
+    beatValue = 4,
+    notesArray
+  ) => {
     //create chromatic scale measure
+
     const renderer = new Renderer(div, Renderer.Backends.SVG);
     renderer.resize(900, 200);
     const context = renderer.getContext();
@@ -486,10 +492,10 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   //X, Y, staveWidth, numBeats, beatValue, notesArray
-  createMeasure(10, 0, 700, 8, 4, notes.slice(0, 8));
-  createMeasure(10, 0, 600, 8, 4, notes.slice(8, 16));
-  createMeasure(10, 0, 600, 8, 4, notes.slice(16, 24));
-  createMeasure(10, 0, 600, 8, 4, notes.slice(24, 33));
+  createMeasureAndAddNotes(10, 0, 600, 8, 4, notes.slice(0, 8));
+  createMeasureAndAddNotes(10, 0, 600, 8, 4, notes.slice(8, 16));
+  createMeasureAndAddNotes(10, 0, 600, 8, 4, notes.slice(16, 24));
+  createMeasureAndAddNotes(10, 0, 600, 8, 4, notes.slice(24, 33));
 
   const audioContext = new AudioContext();
 
