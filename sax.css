@@ -114,13 +114,14 @@
   border: 2px solid gold;
   position: absolute;
 }
+
 .palm-key-class:nth-child(1) {
-  margin-left: 5.5em;
-  margin-top: 3em;
-}
-.palm-key-class:nth-child(2) {
   margin-left: 4em;
   margin-top: 5.5em;
+}
+.palm-key-class:nth-child(2) {
+  margin-left: 5.5em;
+  margin-top: 3em;
 }
 
 .side-keys {
@@ -208,5 +209,5 @@
 }
 
 .root {
-  margin-left: 10%
+  margin-left: 10%;
 }

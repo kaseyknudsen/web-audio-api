@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const Eb = createLowEb();
   const C = createLowC();
 
-  const palmKeysArray = ["F", "E", "D"].map((key, idx) => {
+  const palmKeysArray = ["D", "E", "F"].map((key, idx) => {
     const palmKey = document.createElement("div");
     palmKeys.appendChild(palmKey);
     palmKey.className = "palm-key-class";
@@ -276,9 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
       noteName2: () => [createNewNote("bb/4", "q", "b")],
       path: "alto_sax_sounds/Middle-Bb.mp3",
       keyPressFunction: () => {
-        for (let i = 0; i < frontKeyNotesArray.length - 4; i++) {
-          keyPress(frontKeyNotesArray[i]);
-        }
+        keyPress(frontKeyNotesArray[0]);
         keyPress(bissKey);
       },
     },
@@ -407,47 +405,83 @@ document.addEventListener("DOMContentLoaded", () => {
       noteName1: () => [createNewNote("a#/5", "q", "#")],
       noteName2: () => [createNewNote("bb/5", "q", "b")],
       path: "alto_sax_sounds/High-A#.mp3",
+      keyPressFunction: () => {
+        keyPress(frontKeyNotesArray[0]);
+        keyPress(bissKey);
+        keyPress(octaveKey);
+      },
     },
     {
       noteName: "B/Cb",
       noteName1: () => [createNewNote("b/5", "q")],
       noteName2: () => [createNewNote("cb/5", "q", "b")],
       path: "alto_sax_sounds/High-B.mp3",
+      keyPressFunction: () => {
+        keyPress(frontKeyNotesArray[0]);
+        keyPress(octaveKey);
+      },
     },
     {
       noteName: "C",
       noteName1: () => [createNewNote("c/6", "q")],
       noteName2: () => [createNewNote("b#/6", "q", "#")],
       path: "alto_sax_sounds/High-C.mp3",
+      keyPressFunction: () => {
+        keyPress(frontKeyNotesArray[1]);
+        keyPress(octaveKey);
+      },
     },
     {
       noteName: "C#/Db",
       noteName1: () => [createNewNote("c#/6", "q", "#")],
       noteName2: () => [createNewNote("db/6", "q", "b")],
       path: "alto_sax_sounds/High-Db.mp3",
+      keyPressFunction: () => {
+        keyPress(octaveKey);
+      },
     },
     {
       noteName: "D",
       noteName1: () => [createNewNote("d/6", "q")],
       path: "alto_sax_sounds/High-D.mp3",
+      keyPressFunction: () => {
+        keyPress(palmKeysArray[1]);
+        keyPress(octaveKey);
+      },
     },
     {
       noteName: "D#/Eb",
       noteName1: () => [createNewNote("d#/6", "q", "#")],
       noteName2: () => [createNewNote("eb/6", "q", "b")],
       path: "alto_sax_sounds/High-Eb.mp3",
+      keyPressFunction: () => {
+        keyPress(palmKeysArray[1]);
+        keyPress(palmKeysArray[2]);
+        keyPress(octaveKey);
+      },
     },
     {
       noteName: "E/Fb",
       noteName1: () => [createNewNote("e/6", "q")],
       noteName2: () => [createNewNote("fb/6", "q", "b")],
       path: "alto_sax_sounds/High-E.mp3",
+      keyPressFunction: () => {
+        keyPress(palmKeysArray[1]);
+        keyPress(palmKeysArray[2]);
+        keyPress(sideKeysArray[2]);
+        keyPress(octaveKey);
+      },
     },
     {
       noteName: "F/E#",
       noteName1: () => [createNewNote("f/6", "q")],
       noteName2: () => [createNewNote("e#/6", "q", "#")],
       path: "alto_sax_sounds/High-F.mp3",
+      keyPressFunction: () => {
+        palmKeysArray.forEach((key, idx) => keyPress(key));
+        keyPress(sideKeysArray[2]);
+        keyPress(octaveKey);
+      },
     },
   ];
 
