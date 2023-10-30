@@ -44,28 +44,14 @@ document.addEventListener("DOMContentLoaded", () => {
     return key;
   };
 
-  const createLowEb = () => {
-    // Create Eb container to hold the circle
-    const EbContainer = document.createElement("div");
-    EbContainer.className = "Ebcontainer";
-    sax.appendChild(EbContainer);
-    // Create Eb key
-    const ebKey = document.createElement("button");
-    EbContainer.appendChild(ebKey);
-    ebKey.className = "ebClass";
-    return ebKey;
-  };
-
-  const createLowC = () => {
-    // Create C container to hold the circle
-    const cContainer = document.createElement("div");
-    cContainer.className = "cContainerClass";
-    sax.appendChild(cContainer);
-    //create C key
-    const Ckey = document.createElement("button");
-    cContainer.appendChild(Ckey);
-    Ckey.className = "cKeyClass";
-    return Ckey;
+  const createLowEbAndC = (containerClassName, keyClassName) => {
+    const container = document.createElement("div");
+    container.className = containerClassName;
+    sax.appendChild(container);
+    const key = document.createElement("button");
+    container.appendChild(key);
+    key.className = keyClassName;
+    return key;
   };
 
   const frontKeyNotesArray = ["B", "A", "G", "F", "E", "D"].map((note, idx) => {
@@ -80,8 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return key;
   });
 
-  const Eb = createLowEb();
-  const C = createLowC();
+  const Eb = createLowEbAndC("ebContainerClass", "ebKeyClass");
+  const C = createLowEbAndC("cContainerClass", "cKeyClass");
 
   const palmKeysArray = ["D", "E", "F"].map((key, idx) => {
     const palmKey = document.createElement("div");
@@ -496,10 +482,11 @@ document.addEventListener("DOMContentLoaded", () => {
   STAVE_WIDTH = 600;
   NUM_BEATS = 8;
   BEAT_VALUE = 4;
-  
+  NUM_MEASURES = 4;
+
   let startingIndex = 0;
 
-  const renderMeasuresToScreen = (numMeasures, num) => {
+  const renderMeasuresToScreen = (numMeasures, index) => {
     for (let i = 0; i < numMeasures; i++) {
       createMeasureAndAddNotes(
         X,
@@ -507,12 +494,12 @@ document.addEventListener("DOMContentLoaded", () => {
         STAVE_WIDTH,
         NUM_BEATS,
         BEAT_VALUE,
-        notes.slice(num, (num += 8))
+        notes.slice(index, (index += 8))
       );
     }
   };
 
-  renderMeasuresToScreen(4, startingIndex);
+  renderMeasuresToScreen(NUM_MEASURES, startingIndex);
 
   const audioContext = new AudioContext();
 
