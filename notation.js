@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const Eb = createLowEbAndC("ebContainerClass", "ebKeyClass");
   const C = createLowEbAndC("cContainerClass", "cKeyClass");
 
-  const palmKeysArray = ["D", "E", "F"].map((key, idx) => {
+  const palmKeysArray = ["High D", "High E", "High F"].map((key, idx) => {
     const palmKey = document.createElement("div");
     palmKeys.appendChild(palmKey);
     palmKey.className = "palm-key-class";
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return sideKey;
   });
 
-  const patchKeysArray = ["G#", "Low B", "Low C#", "low Bb"].map((key, idx) => {
+  const patchKeysArray = ["G#", "Low B", "Low C#", "Low Bb"].map((key, idx) => {
     const patchKey = document.createElement("div");
     patchKeys.appendChild(patchKey);
     patchKey.className = "patch-key-class";
@@ -477,12 +477,12 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-  X = 10;
-  Y = 0;
-  STAVE_WIDTH = 600;
-  NUM_BEATS = 8;
-  BEAT_VALUE = 4;
-  NUM_MEASURES = 4;
+  const X = 10;
+  const Y = 0;
+  const staveWidth = 600;
+  const numBeats = 8;
+  const beatValue = 4;
+  const numMeasures = 4;
 
   let startingIndex = 0;
 
@@ -491,15 +491,15 @@ document.addEventListener("DOMContentLoaded", () => {
       createMeasureAndAddNotes(
         X,
         Y,
-        STAVE_WIDTH,
-        NUM_BEATS,
-        BEAT_VALUE,
+        staveWidth,
+        numBeats,
+        beatValue,
         notes.slice(index, (index += 8))
       );
     }
   };
 
-  renderMeasuresToScreen(NUM_MEASURES, startingIndex);
+  renderMeasuresToScreen(numMeasures, startingIndex);
 
   const audioContext = new AudioContext();
 
