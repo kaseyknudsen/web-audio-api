@@ -72,11 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const key = createSaxKey();
     if (note === "B") {
       key.style.marginBottom = "25px";
-    }
-    if (note === "A") {
+    } else if (note === "A") {
       key.style.marginTop = "40px";
-    }
-    if (note === "G") {
+    } else if (note === "G") {
       key.style.marginBottom = "20px";
     }
     return key;
@@ -99,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return sideKey;
   });
 
-  const patchKeysArray = ["G#", "B", "C#", "Bb"].map((key, idx) => {
+  const patchKeysArray = ["G#", "Low B", "Low C#", "low Bb"].map((key, idx) => {
     const patchKey = document.createElement("div");
     patchKeys.appendChild(patchKey);
     patchKey.className = "patch-key-class";
@@ -126,7 +124,9 @@ document.addEventListener("DOMContentLoaded", () => {
     renderer.resize(900, 200);
     const context = renderer.getContext();
     const stave = new Stave(X, Y, staveWidth);
-    // if (notesArray === notes) stave.addClef("treble");
+    if (notesArray.path === "alto_sax_sounds/Low-Bb.mp3") {
+      stave.addClef("treble");
+    }
     stave.setContext(context).draw();
     const voice = new Voice({ num_beats: numBeats, beat_value: beatValue });
     let allNotes = notesArray.flatMap((note, idx) => {
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const notes = [
     {
-      noteName: "A#/Bb",
+      noteName: "Bb",
       noteName1: () => [createNewNote("a#/3", "q", "#")],
       noteName2: () => [createNewNote("bb/3", "q", "b")],
       path: "alto_sax_sounds/Low-Bb.mp3",
@@ -491,11 +491,28 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-  //X, Y, staveWidth, numBeats, beatValue, notesArray
-  createMeasureAndAddNotes(10, 0, 600, 8, 4, notes.slice(0, 8));
-  createMeasureAndAddNotes(10, 0, 600, 8, 4, notes.slice(8, 16));
-  createMeasureAndAddNotes(10, 0, 600, 8, 4, notes.slice(16, 24));
-  createMeasureAndAddNotes(10, 0, 600, 8, 4, notes.slice(24, 33));
+  X = 10;
+  Y = 0;
+  STAVE_WIDTH = 600;
+  NUM_BEATS = 8;
+  BEAT_VALUE = 4;
+  
+  let startingIndex = 0;
+
+  const renderMeasuresToScreen = (numMeasures, num) => {
+    for (let i = 0; i < numMeasures; i++) {
+      createMeasureAndAddNotes(
+        X,
+        Y,
+        STAVE_WIDTH,
+        NUM_BEATS,
+        BEAT_VALUE,
+        notes.slice(num, (num += 8))
+      );
+    }
+  };
+
+  renderMeasuresToScreen(4, startingIndex);
 
   const audioContext = new AudioContext();
 
